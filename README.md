@@ -8,7 +8,7 @@
 It's goal is to be:
 
 * **Simple**, it's easy to use & packed full of features
-* **Powerful**, Everything is in real-time, host unlimited quizzes for unlimted users.
+* **Powerful**, Everything is in real-time, host unlimited quizzes for unlimited users.
 * **Responsive**, a mobile focused UI optimised for touch devices, with an included dedicated mobile app! 
 
 
@@ -16,30 +16,31 @@ It's goal is to be:
 
 > **NoBrainer is currently in development, so please expect bugs and potential unexpected behaviour**.
 
-NoBrainer requires **PHP 7+** and you will also need to install [Composer](https://getcomposer.org) & [NPM](https://www.npmjs.com).
+NoBrainer requires **PHP >= 7.1.3** and you will also need to install [Composer](https://getcomposer.org) & [NPM](https://www.npmjs.com).
 
 **Clone the repository to your local machine**
 ```bash
-$ git clone https://github.com/NoBrainerQuiz/web.git
+$ git clone https://github.com/NoBrainerQuiz/web.git NoBrainer
 ```
 ```bash
-$ cd web
+$ cd NoBrainer
 ```
 **Create .env and enter details**
 ```bash
 $ cp .env.example .env
 ```
+
+**Install dependencies**
+```bash
+$ composer install && npm install
+```
+
 **Run migrations and seed database**
 ```bash
 $ php artisan migrate
 ```
 ```bash
 $ php artisan db:seed
-```
-
-**To rollback and re-run both migrations and seeds run:**
-```bash
-$ php artisan migrate:refresh --seed
 ```
 
 ## Development Team
