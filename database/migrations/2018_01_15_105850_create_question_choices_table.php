@@ -18,7 +18,7 @@ class CreateQuestionChoicesTable extends Migration
         Schema::create('question_choices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('question_id')->unsigned()->index();
-            $table->enum('is_right_choice', [0, 1]);
+            $table->enum('is_right_choice', [0, 1])->nullable();
             $table->text('choice');
             $table->timestamps();
 

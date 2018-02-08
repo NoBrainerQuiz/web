@@ -1,0 +1,80 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class QuestionsChoicesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('question_choices')->insert([
+            // Choices for question 1
+        [
+            'question_id' => 1,
+            'is_right_choice' => '0',
+            'choice' => 'A pineapple tree with cucumbers'
+        ],
+        [
+            'question_id' => 1,
+            'is_right_choice' => '1', // this is the right choice (enum = 1 = true, enum = 0 = false)
+            'choice' => 'A binary search tree'
+        ],
+        [
+            'question_id' => 1,
+            'is_right_choice' => '0',
+            'choice' => 'A church choir'
+        ],
+        [
+            'question_id' => 1,
+            'is_right_choice' => '0',
+            'choice' => 'A logarithmic skip line'
+        ],
+            // Choices for question 2
+        [
+            'question_id' => 2,
+            'is_right_choice' => '0',
+            'choice' => '{A, B, C, D, E, F, G}'
+        ],
+        [
+            'question_id' => 2,
+            'is_right_choice' => '0',
+            'choice' => '{{1, 0.5, 18, 2.2, 1.8, 89, 45}, 2, 4, 8}'
+        ],
+        [
+            'question_id' => 2,
+            'is_right_choice' => '0',
+            'choice' => '{-1, -2, -3, {-8, -12, -89}, 2, 1}'
+        ],
+        [
+            'question_id' => 2,
+            'is_right_choice' => '1', // this is the right answer again (hi)
+            'choice' => '{1, 34, 56, {50, 67, 123, 978}, 54, 12, 17}'
+        ],
+            // Choices for question 3  
+        [
+            'question_id' => 3,
+            'is_right_choice' => '1', // this is also right answer...last time
+            'choice' => 'Violet'
+        ],
+        [
+            'question_id' => 3,
+            'is_right_choice' => '0',
+            'choice' => 'Cheeky Cherry'
+        ],
+        [
+            'question_id' => 3,
+            'is_right_choice' => '0',
+            'choice' => 'Racing Green'
+        ],
+        [
+            'question_id' => 3,
+            'is_right_choice' => '0',
+            'choice' => 'Saucy Strawberry'
+        ]
+        ]);
+    }
+}

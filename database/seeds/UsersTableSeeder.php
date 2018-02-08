@@ -13,14 +13,20 @@ class UsersTableSeeder extends Seeder
     {
          // insert some test user accounts
          DB::table('users')->insert([
+         [
              'username' => 'quiz_user',
              'email'    => 'quiz_user@nobrainerquiz.com',
-             'password' => bcrypt('secret')
+             'password' => bcrypt('secret'),
+             'created_at' => date('Y-m-d H:i:s'),
+             'updated_at' => date('Y-m-d H:i:s')
          ],
          [
             'username' => 'quiz_host',
             'email'    => 'quiz_host@nobrainerquiz.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+         ]
         ]);
     }
 }
