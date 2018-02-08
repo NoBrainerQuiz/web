@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('quiz_user.welcome');
+    return view('quiz_user.index');
 });

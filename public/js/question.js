@@ -13,3 +13,5 @@ $(window).resize( function() {
 $(document).ready( function() {
   centerAnswers();
 })
+
+//This is really inefficent. Maybe bootstrap?

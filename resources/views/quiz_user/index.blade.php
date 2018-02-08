@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
     <title>NoBrainer</title>
     <link rel="icon"
       type="image/png"
@@ -18,7 +18,7 @@
         ##
       </div>
       <div id="question">
-        If you can see this, there's an error <br/>(CODE: 0x000001)
+        Loading...
       </div>
       <div id="ans-container">
         <div class="ans-box" id="ans-1">
