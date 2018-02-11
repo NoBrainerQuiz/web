@@ -3,7 +3,7 @@
 
 ## NoBrainer ##
 
-**NoBrainer is an online real-time quiz application written in PHP & NodeJS. It's built with [Laravel](https://symfony.com/doc/current/components/console.html)  & [Socket.io](https://socket.io/).**
+**NoBrainer is an online real-time quiz application written in PHP & NodeJS. It's built with [Laravel](https://laravel.com)  & [Socket.io](https://socket.io/).**
 
 It's goal is to be:
 
