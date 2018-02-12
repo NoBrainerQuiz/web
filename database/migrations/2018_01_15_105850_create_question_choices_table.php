@@ -22,7 +22,11 @@ class CreateQuestionChoicesTable extends Migration
             $table->text('choice');
             $table->timestamps();
 
-            $table->foreign('question_id')->references('id')->on('quiz_questions')->onDelete('cascade');
+            $table->foreign('question_id')
+                  ->references('id')
+                  ->on('quiz_questions')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activation extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

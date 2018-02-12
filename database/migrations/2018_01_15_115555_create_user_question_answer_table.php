@@ -24,9 +24,23 @@ class CreateUserQuestionAnswerTable extends Migration
             $table->dateTime('answer_time');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('question_id')->references('id')->on('quiz_questions')->onDelete('cascade');
-            $table->foreign('question_choice_id')->references('id')->on('question_choices')->onDelete('cascade');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('question_id')
+                  ->references('id')
+                  ->on('quiz_questions')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('question_choice_id')
+                  ->references('id')
+                  ->on('question_choices')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 
