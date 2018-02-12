@@ -1,0 +1,34 @@
+/*
+F34605 - Deep Orange
+F37402 - Orange
+F2B809 - Yellow
+070764 - Deep Blue
+24A6F8 - Light Blue
+*/
+
+body {
+  background-color: #070764;
+  color: #24a6f8;
+  margin: 0px;
+  padding: 0px;
+}
+
+#top-container {
+  background-color: #24A6F8;
+  height: 20%;
+  width: 100%;
+}
+
+#noBrainer {
+  display: block;
+  height: 15vh;
+  margin: 0 auto;
+}
+
+button:hover {
+  filter: brightness(85%);
+}
+
+button:active {
+  filter: brightness(115%);
+}

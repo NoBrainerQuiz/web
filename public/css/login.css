@@ -1,0 +1,33 @@
+#container {
+  width: 100vw;
+  height: auto;
+  display: block;
+}
+
+#container  > * {
+  margin: 0 auto;
+}
+
+#username {
+  margin-top: 15vh;
+}
+
+textarea, #signUp {
+  margin-top: 5vh;
+  border: none;
+  border-radius: 40px;
+  width: 50vw;
+  height:10vh;
+  text-align: center;
+}
+
+textarea {
+  font-size: 5vh;
+  padding-top: 2.5vh;
+}
+
+#signUp {
+  background-color: #F34605;
+  color: #070764;
+  font-size: 4vh;
+}
