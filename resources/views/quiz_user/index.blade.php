@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/index.js"></script>
+    <!--<script src="js/index.js"></script>-->
     <title>NoBrainer</title>
     <link rel="icon"
       type="image/png"
@@ -43,5 +43,16 @@
         </div>
       </div>
       <p id="version-number">Version 0.0.0.1Beta0.1</p>
+      <!-- Please do not remove this -->
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+          var socket = io('http://127.0.0.1:8000');
+          socket.on("test-channel:App\\Events\\Sockets", function(message){
+              // increase the power everytime we load test route
+              //$('#power').text(parseInt($('#power').text()) + parseInt(message.data.power));
+              console.log(message)
+          });
+      </script>
+      <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
   </body>
 </html>

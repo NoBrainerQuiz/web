@@ -1,18 +1,13 @@
-#container {
-  width: 100vw;
-  height: auto;
-  display: block;
-}
-
 #container  > * {
   margin: 0 auto;
+  width: 50%;
 }
 
 #username {
   margin-top: 15vh;
 }
 
-textarea, #signUp {
+#login > input, #signUp {
   margin-top: 5vh;
   border: none;
   border-radius: 40px;
@@ -21,13 +16,17 @@ textarea, #signUp {
   text-align: center;
 }
 
-textarea {
+#login > input {
   font-size: 5vh;
-  padding-top: 2.5vh;
 }
 
 #signUp {
   background-color: #F34605;
   color: #070764;
   font-size: 4vh;
+}
+
+/* Stops blue outline onclick inputs.. Bootstrap will make your life much much easier */
+*:focus {
+    outline: none;
 }
