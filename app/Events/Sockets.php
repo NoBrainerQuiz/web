@@ -13,20 +13,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class Sockets implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    private $power = 0;
+    public $data;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($power)
+    public function __construct()
     {
         echo 'test';
         //
-        $this->power = $power;
-        /*$this->data = array(
+        $this->data = array(
              'power'=> '10'
-         );*/
+         );
     }
 
     /**

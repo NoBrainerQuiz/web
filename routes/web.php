@@ -33,12 +33,6 @@ Route::get('/login', function () {
 
 Route::get('/fire', function () {
     // this fires the event
-    event(new App\Events\Sockets(10));
+    event(new App\Events\Sockets());
     return "event fired";
-});
-
-
-Route::get('/test', function () {
-    // this checks for the event
-    return "ey";
 });
