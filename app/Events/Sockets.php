@@ -10,21 +10,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Sockets
+class Sockets implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    private $power = 0;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($power)
     {
+        echo 'test';
         //
-        $this->data = array(
+        $this->power = $power;
+        /*$this->data = array(
              'power'=> '10'
-         );
+         );*/
     }
 
     /**
@@ -32,8 +34,8 @@ class Sockets
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('test-channel');
-    }
+     public function broadcastOn()
+     {
+         return ['test-channel'];
+     }
 }
