@@ -10,7 +10,7 @@ var socketIO = require('socket.io')
 server = app.listen(3000)
 var io = socketIO(server)
 
-redis.subscribe('test-channel', function(err, count) {
+redis.subscribe('questions', function(err, count) {
   console.log('testiung')
 });
 

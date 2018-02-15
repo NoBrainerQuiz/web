@@ -35,6 +35,6 @@ class Sockets implements ShouldBroadcast
      */
      public function broadcastOn()
      {
-         return ['test-channel'];
+         return ['questions'];
      }
 }
