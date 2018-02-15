@@ -9,7 +9,7 @@ It's goal is to be:
 
 * **Simple**, it's easy to use & packed full of features
 * **Powerful**, Everything is in real-time, host unlimited quizzes for unlimited users.
-* **Responsive**, a mobile focused UI optimised for touch devices, with an included dedicated mobile app! 
+* **Responsive**, a mobile focused UI optimised for touch devices, with an included dedicated mobile app!
 
 
 ## Installation
@@ -43,11 +43,19 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
+**Starting Sockets and Redis (Redis needs installing beforehand)**
+```bash
+$ redis-server --port 3000
+```
+```bash
+$ node socket.js
+```
+
 ## Development Team
 
 | Name        | Role          |
 | ------------- |:-------------:|
-| [Kent55](https://github.com/Kent55) - UP821309       | Core Development 
+| [Kent55](https://github.com/Kent55) - UP821309       | Core Development
 | [springjben](https://github.com/springjben) - UP805717      | Core Development      
 | [GlennHS](https://github.com/GlennHS) - UP824726 | UI Development      
 | [NickPomfret](https://github.com/orgs/NoBrainerQuiz/people/NickPomfret) UP781768 | UI Development

@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" type="text/css" href="css/question.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="question.js"></script>
+    <!--<script src="js/index.js"></script>-->
     <title>NoBrainer</title>
     <link rel="icon"
       type="image/png"
@@ -19,7 +18,7 @@
         ##
       </div>
       <div id="question">
-        If you can see this, there's an error <br/>(CODE: 0x000001)
+        Loading...
       </div>
       <div id="ans-container">
         <div class="ans-box" id="ans-1">
@@ -43,6 +42,16 @@
           </div>
         </div>
       </div>
-      <p id="version-number">Version 0.0.1-beta-1</p>
+      <p id="version-number">Version 0.0.0.1Beta0.1</p>
+      <!-- Please do not remove this -->
+      <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+      <script>
+          var socket = io('http://127.0.0.1:3000');
+          socket.on("test-channel:App\\Events\\Sockets", function(message){
+              // increase the power everytime we load test route
+              //$('#power').text(parseInt($('#power').text()) + parseInt(message.data.power));
+              console.log(message.data.power)
+          });
+      </script>
   </body>
 </html>
