@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class Sockets implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $data;
+    public $questionData;
     /**
      * Create a new event instance.
      *
@@ -21,10 +21,15 @@ class Sockets implements ShouldBroadcast
      */
     public function __construct()
     {
-        echo 'test';
-        //
-        $this->data = array(
-             'power'=> '10'
+        //Each class will contain the answers and so forth..
+        $this->questionData = array(
+             'question-no' => 1,
+             'timer' => 3,
+             'question' => "How good is No-Brainer?",
+             'ans-1' => "Amazing",
+             'ans-2' => "Wrong Answer",
+             'ans-3' => "Wrong Answer",
+             'ans-4' => "Wrong Answer"
          );
     }
 

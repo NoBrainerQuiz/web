@@ -23,12 +23,20 @@ Route::get('/question', function () {
     return view('quiz_user.question');
 });
 
+Route::get('/answer', function () {
+    return view('quiz_user.answer');
+});
+
 Route::get('/signup', function () {
     return view('quiz_user.signUp');
 });
 
 Route::get('/login', function () {
     return view('quiz_user.login');
+});
+
+Route::get('/create/login', function () {
+    return "Create...";
 });
 
 Route::get('/fire', function () {

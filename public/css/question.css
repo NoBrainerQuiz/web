@@ -57,14 +57,14 @@
   height: 40vh;
 }
 
-#question-number, #timer {
+#question-no, #timer {
   position: absolute;
   text-align: left;
   font-size: 2em;
   top: 0px;
 }
 
-#question-number {
+#question-no {
   left: 5px;
 }
 
@@ -94,7 +94,7 @@ body {
     font-size: 4em;
   }
 
-  #question-number, #timer {
+  #question-no, #timer {
     font-size: 2em;
   }
 }
@@ -106,7 +106,7 @@ body {
     font-size: 5em;
   }
 
-  #question-number, #timer {
+  #question-no, #timer {
     font-size: 3em;
   }
 }
@@ -118,7 +118,7 @@ body {
     font-size: 6em;
   }
 
-  #question-number, #timer {
+  #question-no, #timer {
     font-size: 4em;
   }
 }
