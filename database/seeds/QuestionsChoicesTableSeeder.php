@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class QuestionsChoicesTableSeeder extends Seeder
 {
+    private $table = 'question_choices';
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,8 @@ class QuestionsChoicesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('question_choices')->insert([
+        DB::table($this->table)->truncate();
+        DB::table($this->table)->insert([
             // Choices for question 1
         [
             'question_id' => 1,

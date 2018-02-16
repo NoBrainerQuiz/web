@@ -11,36 +11,38 @@
 |
 */
 
-Route::get('/', function () {
-    return view('quiz_user.index');
+
+// homepage route
+Route::get('/', 'QuizController@quizUserIndex')->name('quiz_user.index');
+
+// new in laravel 5.3, automatically specifies authentication routes
+// source code: https://github.com/laravel/framework/blob/5.6/src/Illuminate/Routing/Router.php
+Route::prefix('host')->group(function() {
+    Auth::routes();
 });
 
-Route::get('/about', function () {
-    return view('quiz_user.about');
-});
+// // public routes
+// Route::middlware(['web', 'activity'])->group(function() {
 
-Route::get('/question', function () {
-    return view('quiz_user.question');
-});
+//     Route::get('/about', function () { 
+//         return view('quiz_user.about'); 
+//     });
 
-Route::get('/answer', function () {
-    return view('quiz_user.answer');
-});
+//     Route::get('/question', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
 
-Route::get('/signup', function () {
-    return view('quiz_user.signUp');
-});
+//     Route::get('/answer', 'QuizController@showAnswer')->name('quiz_user.showAnswer');
 
-Route::get('/login', function () {
-    return view('quiz_user.login');
-});
+//     Route::get('/fire', function () {
+//         event(new App\Events\Sockets());
+//         return "event fired";
+//     });
 
-Route::get('/create/login', function () {
-    return "Create...";
-});
+// });
 
-Route::get('/fire', function () {
-    // this fires the event
-    event(new App\Events\Sockets());
-    return "event fired";
-});
+// // Registered and activated host user routes
+// Route::middleware(['auth', 'activated', 'activity'])->group(function() {
+//     Route::get('activation-required', 'ActivationController@activationRequired')
+//         ->name('quiz_host.activation-required');
+
+//     Route::get('/logout', 'Auth\LoginController@logout')->name('quiz_user.logout');
+// });

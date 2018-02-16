@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class QuestionsTableSeeder extends Seeder
 {
+    private $table = 'quiz_questions';
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,8 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('quiz_questions')->insert([
+        DB::table($this->table)->truncate();
+        DB::table($this->table)->insert([
         [
             'quiz_id' => 1,
             'question' => 'Which one of these isn\'t a data structure?'

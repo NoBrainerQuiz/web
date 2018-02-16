@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class ProfilesTableSeeder extends Seeder
 {
+    private $table = 'profiles';
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,8 @@ class ProfilesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('profiles')->insert([
+        DB::table($this->table)->truncate();
+        DB::table($this->table)->insert([
         [
             'user_id' => 1,
             'age' => '18',

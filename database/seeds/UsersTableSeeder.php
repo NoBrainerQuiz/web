@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
+    private $table = 'users';
     /**
      * Run the database seeds.
      *
@@ -11,8 +12,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table($this->table)->truncate();
          // insert some test user accounts
-         DB::table('users')->insert([
+         DB::table($this->table)->insert([
          [
              'username' => 'quiz_user',
              'email'    => 'quiz_user@nobrainerquiz.com',

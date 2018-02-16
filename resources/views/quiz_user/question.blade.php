@@ -43,7 +43,8 @@
       </div>
       <p id="version-number">Version 0.0.0.1Beta0.1</p>
       <!-- Please do not remove this -->
-      <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+      <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
+      <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
       <script src="js/sockets.js"></script>
   </body>
 </html>

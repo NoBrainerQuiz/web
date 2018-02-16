@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class QuizzesTableSeeder extends Seeder
 {
+    private $table = 'quizzes';
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,8 @@ class QuizzesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('quizzes')->insert([
+        DB::table($this->table)->truncate();
+        DB::table($this->table)->insert([
         [
             'quiz_name' => 'Data Structures & Algorithms',
             'quiz_description' => 'This is a quiz to test your knowledge on Data Structures & Algorithms',

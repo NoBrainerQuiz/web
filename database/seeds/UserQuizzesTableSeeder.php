@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class UserQuizzesTableSeeder extends Seeder
 {
+    private $table = 'user_quizzes';
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,8 @@ class UserQuizzesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_quizzes')->insert([
+        DB::table($this->table)->truncate();
+        DB::table($this->table)->insert([
         [
             'user_id' => 1,
             'quiz_id' => 1
