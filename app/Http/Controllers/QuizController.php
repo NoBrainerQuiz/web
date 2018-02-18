@@ -10,4 +10,9 @@ class QuizController extends Controller
     {
         return view('quiz_user.index');
     }
+
+    public function showHostDashboard() 
+    {
+        return view('quiz_host.dashboard.index');
+    }
 }

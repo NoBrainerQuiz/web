@@ -19,6 +19,9 @@ Route::get('/', 'QuizController@quizUserIndex')->name('quiz_user.index');
 // source code: https://github.com/laravel/framework/blob/5.6/src/Illuminate/Routing/Router.php
 Route::prefix('host')->group(function() {
     Auth::routes();
+    Route::middleware(['auth'])->group(function() {
+        Route::get('dashboard', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
+    });
 });
 
 // // public routes

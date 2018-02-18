@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>No-Brainer - Home Page</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!--
     Put this in a seperate file eventually.
@@ -51,9 +51,15 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+      @if (session()->has('logoutMessage'))
+      <div class="alert alert-success" role="alert">
+        {{ session('logoutMessage') }}
+      </div>
+      @endif
+      
         <h1 class="display-3">Welcome to No-Brainer!</h1>
         <p>Create quizzes and play them live with all your peers. Whether you are a teacher or want to train others, this live quiz service will suit all your needs; it really is a no brainer!</p><br>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Create a quiz &raquo;</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Create a quiz &raquo;</a>
         <a class="btn btn-success btn-lg" href="#" role="button">Play a quiz &raquo;</a>
       </div>
     </div>
