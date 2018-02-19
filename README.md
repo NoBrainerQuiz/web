@@ -3,6 +3,7 @@
 
 <p align="center">
    <a href="https://travis-ci.org/NoBrainerQuiz/web" target="_blank"><img src="https://travis-ci.org/NoBrainerQuiz/web.svg?branch=master" alt="Build Status"></a>
+   <a href="https://scrutinizer-ci.com/g/NoBrainerQuiz/web/" target="_blank"><img src="https://scrutinizer-ci.com/g/NoBrainerQuiz/web/badges/quality-score.png?b=master" alt="Build Status"></a>
 </p>
 
 ## NoBrainer ##
