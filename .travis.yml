@@ -7,9 +7,5 @@ php:
 
 before_script:
   - cp .env.example .env
-  - mysql -e 'create database nobrainer;'
-  - composer self-update
+  - mysql -e 'CREATE DATABASE nobrainer;'
   - composer install --no-interaction
-
-script:
-  - vendor/bin/phpunit
