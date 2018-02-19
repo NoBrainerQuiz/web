@@ -6,7 +6,7 @@ php:
   - 7.2
 
 before_script:
-  - cp .env.travis .env
+  - cp .env.example .env
   - mysql -e 'create database nobrainer;'
   - composer self-update
   - composer install --no-interaction
