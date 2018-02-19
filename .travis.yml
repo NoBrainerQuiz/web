@@ -6,6 +6,10 @@ php:
   - 7.2
 
 before_script:
-  - cp .env.example .env
+  - cp .env.travis .env
   - mysql -e 'CREATE DATABASE nobrainer;'
+  - composer self-update
   - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit
