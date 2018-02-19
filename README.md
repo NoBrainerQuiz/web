@@ -1,6 +1,10 @@
 <p align="center"><img src="https://image.ibb.co/b9a4gw/nobrainer.png">
 </p>
 
+<p align="center">
+   <a href="https://travis-ci.org/NoBrainerQuiz/web" target="_blank"><img src="https://travis-ci.org/NoBrainerQuiz/web.svg?branch=master" alt="Build Status"></a>
+</p>
+
 ## NoBrainer ##
 
 **NoBrainer is an online real-time quiz application written in PHP & NodeJS. It's built with [Laravel](https://laravel.com)  & [Socket.io](https://socket.io/).**
