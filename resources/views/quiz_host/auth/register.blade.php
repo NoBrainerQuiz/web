@@ -1,25 +1,23 @@
-<!doctype html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/theme.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="icon"
-  type="image/png"
-  href="{{ asset('img/favicon.png') }}">
-  <title>Login</title>
-</head>
-<body>
-  <div id="top-container">
-    <img src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='about.html'"/>
+@extends('quiz_host.auth.layout.auth')
+
+@section('title', 'Register')
+
+@section('container_content')
+
+@if ($errors->all())
+  <div class="loginError">
+    @foreach ($errors->all() as $error)
+      {{ $error }} <br />
+    @endforeach
   </div>
-  <div id='container'>
-  <form id="login" action="/signup.php" method="post">
-      <input type="text" name="username" placeholder="Username..."><br>
-      <input type="text" name="email" placeholder="Email..."><br>
-      <input type="password" name="password" placeholder="Password..."><br>
-      <input id="signUp" type="submit" value="Register account">
-    </form>
-  </div>
-</body>
-</html>
+@endif
+
+  <form id="login" action="{{ route('register') }}" method="post">
+    {{ csrf_field() }}
+    <input type="text" name="username" placeholder="Username" value="{{ old('username') }}"><br>
+    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}"><br>
+    <input type="password" name="password" placeholder="Password..."><br>
+    <input type="password" name="password_confirmation" placeholder="Confirm password..."><br>
+    <input id="signUp" type="submit" name="submit" value="Register account">
+  </form>
+  @endsection
