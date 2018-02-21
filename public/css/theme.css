@@ -6,29 +6,38 @@ F2B809 - Yellow
 24A6F8 - Light Blue
 */
 
-body {
+body, .jumbotron, .container {
   background-color: #070764;
   color: #24a6f8;
-  margin: 0px;
-  padding: 0px;
 }
 
 #top-container {
+  position: fixed;
   background-color: #24A6F8;
-  height: 20%;
-  width: 100%;
+  height: 20vh;
+  width: 100vw;
+  top: 0;
 }
 
-#noBrainer {
+#logo {
   display: block;
-  height: 15vh;
+  height: 20vh;
+  width: auto;
   margin: 0 auto;
 }
 
-button:hover {
-  filter: brightness(85%);
+#logo:hover {
+  cursor: pointer;
 }
 
-button:active {
-  filter: brightness(115%);
+#main-page-container {
+  position: relative;
+  top: 20vh;
+  height: 80vh;
+}
+
+#version-number {
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
 }
