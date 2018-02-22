@@ -13,16 +13,21 @@
 
 
 // homepage route
-Route::get('/', 'QuizController@quizUserIndex')->name('quiz_user.index');
+Route::get('/', 'QuizController@showIndexWelcome')->name('quiz_user.index');
 
 // new in laravel 5.3, automatically specifies authentication routes
 // source code: https://github.com/laravel/framework/blob/5.6/src/Illuminate/Routing/Router.php
 Route::prefix('host')->group(function() {
     Auth::routes();
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
     Route::middleware(['auth'])->group(function() {
         Route::get('dashboard', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
     });
 });
+
+Route::get('/about', function() {
+    return view('quiz_user.about');
+})->name('about');
 
 // // public routes
 // Route::middlware(['web', 'activity'])->group(function() {

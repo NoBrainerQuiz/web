@@ -6,9 +6,19 @@ F2B809 - Yellow
 24A6F8 - Light Blue
 */
 
+
 body, .jumbotron, .container {
   background-color: #070764;
   color: #24a6f8;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 100px; /* bottom = footer height */
 }
 
 #top-container {
@@ -37,7 +47,9 @@ body, .jumbotron, .container {
 }
 
 #version-number {
-  position: fixed;
-  bottom: 0px;
-  width: 100vw;
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
 }

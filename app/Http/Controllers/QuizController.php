@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-    public function quizUserIndex()
+    public function showIndexWelcome()
     {
-        return view('quiz_user.index');
+        return view('index.welcome');
     }
 
     public function showHostDashboard() 

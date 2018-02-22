@@ -54,7 +54,7 @@ class LoginController extends Controller
         $user = Auth::user();
         $this->guard()->logout();
         $request->session()->invalidate();
-        return redirect('/')->with('logoutMessage', 'Bye Bye for now ' . $user->username);
+        return redirect()->route('login')->with('logoutMessage', 'You have been successfully logged out ' . $user->username);
     }
 
     public function showLoginForm()
