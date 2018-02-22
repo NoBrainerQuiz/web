@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <div class="wrapper">
     <div class="container" id="top-container">
         <img style="max-width:100%; max-height:100%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='about.html'"/>
     </div>
@@ -23,11 +24,11 @@
       <div class="container container-fluid" id=id="main-page-container">
         @yield('container_content')
     </div>
-    <hr /><hr /><hr /><hr /><hr />
-    <div class="version-number">
-        <p>Version 0.0.1-alpha-1</p>
-      </div>
     </div>
+    </div>
+    <footer class="footer">
+        <p>Version 0.0.1-alpha-1</p>
+      </footer>
 <!--External Scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
