@@ -15,11 +15,11 @@ h1 {
 
 
 .left-half {
-  background-color: #ff9e2c;
+  background-color: #fff;
   padding: 2rem;
   float: left;
   width: 49%;
-  color: white;
+  color: black;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease-in-out;
@@ -30,11 +30,11 @@ h1 {
 }
 
 .right-half {
-  background-color: #ff9e2c;
+  background-color: #fff;
   padding: 2rem;
   float: right;
   width: 49%;
-  color: white;
+  color: black;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease-in-out;
@@ -45,10 +45,9 @@ h1 {
 }
 
 </style>
-
-<h4 style="margin: 0 auto;">Welcome to NoBrainer!</h4><hr />
-<strong>Select your option below...
-</strong><hr />
+<!-- <h4 style="margin: 0 auto;">Welcome to NoBrainer!</h4>
+<strong>Select your option below... -->
+<!-- </strong> -->
 <a href="{{ route('login') }}">
 <div class="left-half">
   <article>

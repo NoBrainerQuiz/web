@@ -4,7 +4,7 @@
 
 @section('container_content')
 
-<h4 style="margin: 0 auto;">Create your NoBrainer account now...</h4><hr />
+<h4 style="margin: 0 auto;">Create your NoBrainer account now...</h4>
 @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -15,10 +15,9 @@
       {{ $error }} <br />
     @endforeach
   </div>
-  <hr />
   @endif
  
-  <form action="{{ route('register') }}" method="post" style="width: 50%; margin: 0 auto;">
+  <form action="{{ route('register') }}" method="post" style="width: 50%; margin: 0 auto; padding-bottom: 60px;">
     {{ csrf_field() }}
     <!-- <div class="form-group">
     <label style="float: left;">Username:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="Choose a unique username to remember and login with on the site.">?</a></label>

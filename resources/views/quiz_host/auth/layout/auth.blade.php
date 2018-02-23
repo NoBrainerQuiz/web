@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/theme.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+  <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}"> -->
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="icon"
@@ -16,19 +16,25 @@
 </head>
 
 <body>
-    <div class="wrapper">
-    <div class="container" id="top-container">
-        <img style="max-width:100%; max-height:100%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='about.html'"/>
-    </div>
-    <div class="jumbotron jumbotron-fluid text-center" id="main-page-container">
-      <div class="container container-fluid" id=id="main-page-container">
+    <!-- <div class="container" id="top-container">
+        <img style="max-width:100%; max-height:100%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='/'"/>
+    </div> -->
+    <div class="container" style="padding-top: 40px; padding-bottom: 0px;">
+<img style="max-width:20%; max-height:20%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='/'"/>
+</div>
+    <div class="jumbotron text-center page-wrap" id="main-page-container">
+        <div class="container">
         @yield('container_content')
+</div>
     </div>
-    </div>
-    </div>
-    <footer class="footer">
-        <p>Version 0.0.1-alpha-1</p>
-      </footer>
+
+    <footer class="site-footer">
+    Version 0.1.0-Alpha-1 
+</footer>
+    
+
+
+
 <!--External Scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -36,8 +42,9 @@
     <!--End External Scripts-->
     <script>
        $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip()	
 })
     </script>
 </body>
+
 </html>
