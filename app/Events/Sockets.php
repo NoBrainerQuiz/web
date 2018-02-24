@@ -24,7 +24,7 @@ class Sockets implements ShouldBroadcast
         //Each class will contain the answers and so forth..
         $this->questionData = array(
              'question-no' => 1,
-             'timer' => 3,
+             'timer' => 30,
              'question' => "How good is No-Brainer?",
              'ans-1' => "Amazing",
              'ans-2' => "Wrong Answer",

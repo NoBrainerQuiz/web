@@ -25,6 +25,8 @@ Route::prefix('host')->group(function() {
     });
 });
 
+Route::get('/pin/enter', 'QuizController@enterQuizPin')->name('pin-enter');
+
 Route::get('/about', function() {
     return view('quiz_user.about');
 })->name('about');
@@ -32,11 +34,13 @@ Route::get('/about', function() {
 // // public routes
 // Route::middlware(['web', 'activity'])->group(function() {
 
-//     Route::get('/about', function () { 
-//         return view('quiz_user.about'); 
+//     Route::get('/about', function () {
+//         return view('quiz_user.about');
 //     });
 
-//     Route::get('/question', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
+Route::get('/question', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
+Route::get('/pin', 'QuizController@showPin')->name('quiz_user.showPin');
+//Route::get('/pin', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
 
 //     Route::get('/answer', 'QuizController@showAnswer')->name('quiz_user.showAnswer');
 
