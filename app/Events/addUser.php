@@ -10,21 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class Sockets implements ShouldBroadcast
+class addUser implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $questionData;
+    public $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($pin, $method)
+    public function __construct($username)
     {
         //Each class will contain the answers and so forth..
-        $this->questionData = array(
-             'pin' => $pin,
-             'method' => $method
+        $this->user = array(
+             'name' => $username
          );
     }
 
@@ -35,6 +34,6 @@ class Sockets implements ShouldBroadcast
      */
      public function broadcastOn()
      {
-         return ['questions'];
+         return ['addUser'];
      }
 }

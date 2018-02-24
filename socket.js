@@ -10,6 +10,9 @@
       - Properly comment the code
       - Make the quiz questions and answers work
       - Skip question
+
+    MAJOR:
+      - How does each client know what they are? We NEED socket ids!
 */
 
 /*
@@ -46,31 +49,39 @@ let quiz = {
 }
 
 redis.subscribe('questions', function(err, count) {
-  console.log('Started on port 3000')
+  console.log('Listening for questions')
 });
 
+let userName;
 //Issue with web sockets
 redis.on('message', function(channel, message) {
-    console.log('Message Recieved: ' + message);
-    message = JSON.parse(message);
-    quiz.pin = message.data.questionData.pin
-    let method = message.data.questionData.method
-    //io.emit(channel + ':' + message.event, message.data);
+  console.log('Message Recieved: ' + message);
+  message = JSON.parse(message);
 
-    if (method == "start") {
-      quiz.state = "Playing"
-      //Get all quiz questions and answers...
-      io.emit('redirect', '/question')
-    } else if (method == "finish") {
-      quiz.state = "Ended"
-      io.emit('redirect', '/')
-    }
+  quiz.pin = message.data.questionData.pin
+  let method = message.data.questionData.method
+  //io.emit(channel + ':' + message.event, message.data);
+
+  if (method == "start") {
+    quiz.state = "Playing"
+    //Get all quiz questions and answers...
+    io.emit('redirect', '/question')
+  } else if (method == "finish") {
+    //Resetting game
+    quiz.state = "Ended"
+    quiz.questions = []
+    quiz.answers = []
+    users = [] //Removing all users
+    io.emit('redirect', '/')
+  }
 
 });
 
 /*
   This is for the main functionality of the quizzes
-    - Mainly for the user. This also needs some sort of validation. Perhaps using express sessions?
+    - Mainly for the user. This also needs some sort of validation. Perhaps using express sessions?##
+
+
 */
 //If username is blank then var sillyName = generateName();
 io.on('connection', function(client) {
@@ -79,21 +90,55 @@ io.on('connection', function(client) {
     //Validate the answer and show right or wrong screen
     console.log(data)
   })
-})
 
-io.on('addUser', function(data) {
-  let newUser = {
-    id: client.id,
-    username: "",
-    answeredQuestion: false,
-    questionsCorrect: 0,
-    questionIncorrect: 0,
-    timeAnsweredIn: 0,
-  }
-  console.log(newUser)
-  users.push(newUser)
-})
+  client.on('addUser', async function(data) {
+    console.log("This going off?", data)
+    let newUser = {
+      id: data.id,
+      username: data.name, //User different usernames. This needs some validation
+      answeredQuestion: false,
+      questionsCorrect: 0,
+      questionIncorrect: 0,
+      timeAnsweredIn: 0,
+    }
+    users.push(newUser)
+    let info = await getUserInfo(users, data.id)
+    console.log("new user", info)
+    client.emit('userInfo', {allUsers: info.allUsernames, username: info.yourUsername})
+    })
+
+    client.on('validateUser', async function(data) {
+      let info = await getUserInfo(users, data.id)
+      console.log(info)
+      if (info.validUser == false) {
+        client.emit('signUserUp', {})
+      } else {
+        client.emit('userInfo', {allUsers: info.allUsernames, username: info.yourUsername})
+      }
+    })
+
+  })
 
 io.on('disconnect', function(data) {
   //Remove user from session...
 })
+
+async function getUserInfo(users, id) {
+  let validUser = false;
+  let allUsernames = [];
+  let yourUsername;
+  for (let i = 0; i < users.length; i++) {
+    allUsernames.push(users[i].username)
+    console.log(users[i].id, id)
+    if (users[i].id == id) {
+      validUser = true
+      yourUsername = users[i].username
+    }
+  }
+  let returnVal = {
+    validUser: validUser,
+    allUsernames: allUsernames,
+    yourUsername: yourUsername
+  }
+  return returnVal
+}

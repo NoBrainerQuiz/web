@@ -21,14 +21,17 @@ socket.on('showQuestion', function(data) {
   updateScreen(data['questionData'])
 })
 
+socket.on('signUserUp', function() {
+  $('#assignName').modal({backdrop: 'static', keyboard: false})
+  $('#assignName').modal('show');
+})
+
 /*
   Temp for testing
   On click it needs to emit to the server, all answers need to have a clickevent.
   Correct answer done server side, better for security.
-
-  When an event is fired this updates dynamically. To try it go to http://127.0.0.1:8000/fire when running the web sockets.
 */
-let timeFromStart;
+
 function updateScreen(data) {
   let elements = ['question-no', 'timer', 'question', 'ans-1', 'ans-2', 'ans-3', 'ans-4']
   for(let i = 0; i < elements.length; i++) {

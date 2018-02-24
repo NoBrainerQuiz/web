@@ -54,7 +54,8 @@ class QuizController extends Controller
         if (!$quiz->exists()) {
             return back()->with('pin_error', 'Either the quiz doesn\'t exits, or it hasn\'t been activated');
         } else {
-            //return back()->with('success', 'The quiz ' . $quiz->quiz_name . ' exits and is ready to play.');
+            //Add user to the socket.io stuff!
+            event(new \App\Events\addUser($request->get('username'))); //Adds the user to the socket stuff
             return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz->quiz_name);
         }
     }
