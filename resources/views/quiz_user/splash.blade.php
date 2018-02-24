@@ -6,7 +6,7 @@
 <!--
   If no quiz data, then redirect the user elsewhere.. Worry about authentication later.
 -->
-<h4 style="margin: 0 auto;">Please wait for the host to start the quiz?</h4></br>
+<h4 style="margin: 0 auto;">Please wait for the host to start the quiz..</h4></br>
 
 @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
@@ -37,18 +37,5 @@
         {{ session('quizData') }}
       </div>
       @endif
-  <form action="{{ route('pin-enter') }}" method="post" style="width: 50%; margin: 0 auto;">
-    {{ csrf_field() }}
-    <div class="form-group">
-    <label style="float: left;">PIN:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="You get this PIN off the creator of the quiz.">?</a></label><br />
-      <input id="email-entry" class="form-control" type="text" name="pin" placeholder="Enter PIN...">
-    </div>
-    <div class="form-group">
-      <label style="float: left;">Username:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="This will appear as your name in the game.">?</a></label><br />
-      <input id="password-entry" class="form-control" type="text" name="username" placeholder="Enter username...">
-    </div>
-    <div class="form-group">
-    <button style="float: right; cursor: pointer;" type="submit" class="btn btn-warning">Enter Quiz &raquo;</button>
-</div>
-  </form>
+  <p>Names will be displayed here...</p>
 @endsection

@@ -4,14 +4,21 @@
 
 //Connect to our server session and upon an event being fired, show a message.
 socket.on("questions:App\\Events\\Sockets", function(data){
-    // increase the power everytime we load test route
-    //$('#power').text(parseInt($('#power').text()) + parseInt(message.data.power));
-    console.log("Got data: ", data)
-    updateScreen(data['questionData'])
+    window.location.href = "/question";
+    //console.log("Got data: ", data)
 });
+
+//Dynamically redirect the user from the server
+socket.on('redirect', function(url) {
+  window.location.href = url;
+})
 
 socket.on('connect', function(data) {
   console.log("Connection Established")
+})
+
+socket.on('showQuestion', function(data) {
+  updateScreen(data['questionData'])
 })
 
 /*

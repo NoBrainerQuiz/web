@@ -19,17 +19,19 @@ class Sockets implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($pin, $method)
     {
         //Each class will contain the answers and so forth..
         $this->questionData = array(
-             'question-no' => 1,
+             'pin' => $pin,
+             'method' => $method
+             /*'question-no' => 1,
              'timer' => 30,
              'question' => "How good is No-Brainer?",
              'ans-1' => "Amazing",
              'ans-2' => "Wrong Answer",
              'ans-3' => "Wrong Answer",
-             'ans-4' => "Wrong Answer"
+             'ans-4' => "Wrong Answer"*/
          );
     }
 

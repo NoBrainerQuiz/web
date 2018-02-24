@@ -37,7 +37,6 @@ class QuizController extends Controller
         // @TODO - PIN max length needs to be dynamic with trait
         // will sort out soon - Matt.
         $validatedData = $request->validate([
-            'username' => 'required|string',
             'pin'      => 'required|string'
         ]);
 
@@ -56,7 +55,7 @@ class QuizController extends Controller
             return back()->with('pin_error', 'Either the quiz doesn\'t exits, or it hasn\'t been activated');
         } else {
             //return back()->with('success', 'The quiz ' . $quiz->quiz_name . ' exits and is ready to play.');
-            return redirect()->route('quiz_user.showSplash');
+            return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz->quiz_name);
         }
     }
 }

@@ -28,10 +28,12 @@
 </div>
     </div>
     <footer class="site-footer">
-    Version 0.1.0-Alpha-1 
+    Version 0.1.0-Alpha-1
 </footer>
-    
 
+<script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
+<script>var socket = io('//{{ Request::getHost() }}:3000');</script>
+<script src="js/sockets.js"></script>
 
 
 <!--External Scripts-->
@@ -41,7 +43,7 @@
     <!--End External Scripts-->
     <script>
        $(function () {
-  $('[data-toggle="tooltip"]').tooltip()	
+  $('[data-toggle="tooltip"]').tooltip()
 })
     </script>
 </body>
