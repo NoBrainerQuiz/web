@@ -27,6 +27,11 @@ class QuizController extends Controller
         return view('quiz_user.pin');
     }
 
+    public function showSplash()
+    {
+        return view('quiz_user.splash');
+    }
+
     public function enterQuizPin(Request $request)
     {
         // @TODO - PIN max length needs to be dynamic with trait
@@ -43,7 +48,6 @@ class QuizController extends Controller
         // }
 
         // FIX XSS HERE ALSO
-
         $quiz = Quiz::where('quiz_pin', $request->get('pin'))
                     ->where('active', 1)
                     ->first();
@@ -51,7 +55,8 @@ class QuizController extends Controller
         if (!$quiz->exists()) {
             return back()->with('pin_error', 'Either the quiz doesn\'t exits, or it hasn\'t been activated');
         } else {
-            return back()->with('success', 'The quiz ' . $quiz->quiz_name . ' exits and is ready to play.');
+            //return back()->with('success', 'The quiz ' . $quiz->quiz_name . ' exits and is ready to play.');
+            return redirect()->route('quiz_user.showSplash');
         }
     }
 }

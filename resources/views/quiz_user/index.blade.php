@@ -56,11 +56,11 @@
         {{ session('logoutMessage') }}
       </div>
       @endif
-      
+
         <h1 class="display-3">Welcome to No-Brainer!</h1>
         <p>Create quizzes and play them live with all your peers. Whether you are a teacher or want to train others, this live quiz service will suit all your needs; it really is a no brainer!</p><br>
         <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Create a quiz &raquo;</a>
-        <a class="btn btn-success btn-lg" href="#" role="button">Play a quiz &raquo;</a>
+        <a class="btn btn-success btn-lg" href="{{ route('pin') }}" role="button">Play a quiz &raquo;</a>
       </div>
     </div>
 

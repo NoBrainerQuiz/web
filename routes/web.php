@@ -39,6 +39,7 @@ Route::get('/about', function() {
 //     });
 
 Route::get('/question', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
+Route::get('/splash', 'QuizController@showSplash')->name('quiz_user.showSplash');
 Route::get('/pin', 'QuizController@showPin')->name('quiz_user.showPin');
 //Route::get('/pin', 'QuizController@showQuestion')->name('quiz_user.showQuestion');
 
