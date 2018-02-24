@@ -4,7 +4,7 @@
 
 @section('container_content')
 
-<h4 style="margin: 0 auto;">Sign in to your NoBrainer account...</h4><hr />
+<h4 style="margin: 0 auto; padding-bottom: 20px;">Sign in to your NoBrainer account...</h4>
 @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -15,7 +15,6 @@
       {{ $error }} <br />
     @endforeach
   </div>
-  <hr />
   @endif
   @if (session()->has('logoutMessage'))
       <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
@@ -24,7 +23,6 @@
   </button>
         {{ session('logoutMessage') }}
       </div>
-      <hr />
       @endif
   <form action="{{ route('login') }}" method="post" style="width: 50%; margin: 0 auto;">
     {{ csrf_field() }}

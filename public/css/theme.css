@@ -6,10 +6,6 @@ F2B809 - Yellow
 24A6F8 - Light Blue
 */
 
-html {
-  min-height: 100%;
-}
-
 body {padding:0;margin:0;}
 
 body, .jumbotron, .container {
@@ -42,31 +38,25 @@ body, .jumbotron, .container {
   100%  {background-color: #45a3e5}
 }
 
-#top-container {
+/*#top-container {
   position: absolute;
   /* background-color: #24A6F8; */
-  background-color: #45a3e5;
+ /* background-color: #45a3e5;
   height: 20vh;
   width: 100vw;
   top: 0;
   -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 12s; /* Chrome, Safari, Opera */
-    animation-name: example;
+   /* -webkit-animation-duration: 12s; /* Chrome, Safari, Opera */
+   /* animation-name: example;
     animation-duration: 12s;
     animation-iteration-count: infinite;
-}
+}*/
 
 #logo {
   display: block;
-  height: 20vh;
   width: auto;
   margin: 0 auto;
-}
-
-.wrapper {
-  min-height: 100%;
-  height: 100%;
-  margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+  padding-top: 40px;
 }
 
 #logo:hover {
@@ -78,44 +68,27 @@ body, .jumbotron, .container {
  /* height: 80vh;
 }*/
 
-#version-number {
+/* #version-number {
   position: absolute;
     bottom: 0;
     height: 100px;
     width: 100%;
-}
+} */
 
-.blog-footer {
-  padding: 2.5rem 0;
-  color: #fff;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  margin-bottom: 60px;
-}
-.blog-footer p:last-child {
-  margin-bottom: 0;
-}
-
-* {
-  margin: 0;
-}
-html, body {
-  height: 100%;
-}
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -142px; 
+  margin-bottom: -60px; 
+  padding-bottom: 100px;
 }
 .page-wrap:after {
   content: "";
   display: block;
 }
 .site-footer, .page-wrap:after {
-  height: 142px; 
+  height: 60px; 
 }
 .site-footer {
   text-align: center;
+  bottom: 0;
 }

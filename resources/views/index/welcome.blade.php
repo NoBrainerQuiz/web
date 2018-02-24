@@ -57,7 +57,7 @@ h1 {
 </article>
 </div>
 </a>
-<a href="">
+<a href="{{ route('pin-enter') }}">
 <div class="right-half">
   <article>
     <h1><i class="fas fa-pencil-alt"></i></h1>

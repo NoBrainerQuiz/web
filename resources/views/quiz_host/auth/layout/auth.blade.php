@@ -19,7 +19,7 @@
     <!-- <div class="container" id="top-container">
         <img style="max-width:100%; max-height:100%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='/'"/>
     </div> -->
-    <div class="container" style="padding-top: 40px; padding-bottom: 0px;">
+    <div id="logo">
 <img style="max-width:20%; max-height:20%; margin: 0 auto; display: block;" src="{{ asset('img/noBrainer.png') }}" id="noBrainer" alt="logo" onclick="location.href='/'"/>
 </div>
     <div class="jumbotron text-center page-wrap" id="main-page-container">
@@ -27,7 +27,6 @@
         @yield('container_content')
 </div>
     </div>
-
     <footer class="site-footer">
     Version 0.1.0-Alpha-1 
 </footer>

@@ -5,23 +5,34 @@
 @section('container_content')
 
 <h4 style="margin: 0 auto;">Are you ready for the challenge?</h4></br>
+
 @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <strong>Ooops, please correct the below errors before logging in:</strong><br />
+  <strong>Ooops, please correct the below errors before continuing:</strong><br />
     @foreach ($errors->all() as $error)
       {{ $error }} <br />
     @endforeach
   </div>
   @endif
-  @if (session()->has('logoutMessage'))
+
+@if (session()->has('pin_error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Ooops, please correct the below errors before continuing:</strong><br />
+    {{ session('pin_error') }}
+  </div>
+  @endif
+  @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-        {{ session('logoutMessage') }}
+        {{ session('success') }}
       </div>
       @endif
   <form action="{{ route('pin-enter') }}" method="post" style="width: 50%; margin: 0 auto;">

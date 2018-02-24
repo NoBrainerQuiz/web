@@ -19,6 +19,8 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
             $table->string('quiz_name', 80);
             $table->text('quiz_description');
+            $table->string('quiz_pin');
+            $table->enum('active', [0, 1])->nullable();
             $table->timestamps();
         });
     }

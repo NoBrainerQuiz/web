@@ -25,7 +25,7 @@ Route::prefix('host')->group(function() {
     });
 });
 
-Route::get('/pin/enter', 'QuizController@enterQuizPin')->name('pin-enter');
+Route::post('pin', 'QuizController@enterQuizPin')->name('pin-enter');
 
 Route::get('/about', function() {
     return view('quiz_user.about');
