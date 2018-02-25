@@ -5,8 +5,9 @@
    <a href="https://travis-ci.org/NoBrainerQuiz/web" target="_blank"><img src="https://travis-ci.org/NoBrainerQuiz/web.svg?branch=master" alt="Build Status"></a>
    <a href="https://scrutinizer-ci.com/g/NoBrainerQuiz/web/" target="_blank"><img src="https://scrutinizer-ci.com/g/NoBrainerQuiz/web/badges/quality-score.png?b=master" alt="Build Status"></a>
    <hr />
-   <img src="https://i.gyazo.com/0d7a546b095a0605eb62739e04c6e350.png" />
 </p>
+
+<p align="center"><img src="https://goo.gl/dUPhKZ" /></p>
 
 ## NoBrainer ##
 
@@ -65,5 +66,4 @@ $ node socket.js
 | [Kent55](https://github.com/Kent55) - UP821309       | Core Development
 | [springjben](https://github.com/springjben) - UP805717      | Core Development      
 | [GlennHS](https://github.com/GlennHS) - UP824726 | UI Development      
-| [NickPomfret](https://github.com/orgs/NoBrainerQuiz/people/NickPomfret) UP781768 | UI Development
 | [jamesdavy21](https://github.com/jamesdavy21) - UP804392 | Mobile Development  
