@@ -59,6 +59,8 @@ $ redis-server --port 3000
 $ node socket.js
 ```
 
+> **To test emails locally set MAIL_DRIVER to log in your .env file**.
+
 ## Development Team
 
 | Name        | Role          |
