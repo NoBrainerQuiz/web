@@ -40,23 +40,17 @@ class QuizController extends Controller
             'pin'      => 'required|string'
         ]);
 
-        // if (Quiz::where('quiz_pin', $request->get('pin'))->where('active', 1)->get()->isEmpty()) {
-        //     return back()->with('errors', 'The quiz PIN does not exist');
-        // } else {
-        //     return back()->with('success', 'Whoa, the quiz exists');
-        // }
-
         // FIX XSS HERE ALSO
         $quiz = Quiz::where('quiz_pin', $request->get('pin'))
                     ->where('active', 1)
                     ->first();
 
         if (!$quiz->exists()) {
-            return back()->with('pin_error', 'Either the quiz doesn\'t exits, or it hasn\'t been activated');
+            return back()->with('pin_error', 'Either the quiz doesn\'t exist, or it hasn\'t been activated');
         } else {
             //Add user to the socket.io stuff!
             event(new \App\Events\addUser($request->get('username'))); //Adds the user to the socket stuff
-            return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz->quiz_name);
+            return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz);
         }
     }
 }

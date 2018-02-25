@@ -6,7 +6,8 @@
   If no quiz data, then redirect the user elsewhere.. Worry about authentication later.
 -->
 @if (session()->has('quizData'))
-  <h2 style="margin: 0 auto;">{{ session('quizData') }}</h4></br></br>
+  <h2 style="margin: 0 auto;">{{ session('quizData')->quiz_name }}</h4>
+  <small>{{ session('quizData')->quiz_description }}</small><br /><br />
 @endif
 <h5 style="margin: 0 auto;">Please wait for the host to start the quiz..</h5></br></br>
 

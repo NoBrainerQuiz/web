@@ -12,7 +12,7 @@
 */
 
 // homepage route
-Route::get('/', 'QuizController@showIndexWelcome')->name('quiz_user.index');
+Route::get('/', 'QuizController@showIndexWelcome')->name('welcome');
 
 // new in laravel 5.3, automatically specifies authentication routes
 // source code: https://github.com/laravel/framework/blob/5.6/src/Illuminate/Routing/Router.php

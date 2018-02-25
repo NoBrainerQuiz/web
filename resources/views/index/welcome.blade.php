@@ -4,9 +4,7 @@
 
 @section('container_content')
 
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <style>
-
 
 h1 {
   font-size: 1.75rem;
@@ -15,14 +13,15 @@ h1 {
 
 
 .left-half {
-  background-color: #fff;
+  background-color: #333;
   padding: 2rem;
   float: left;
   width: 49%;
-  color: black;
+  color: #fff;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease-in-out;
+  border: 1px solid #fff;
 }
 
 .left-half:hover {
@@ -30,14 +29,15 @@ h1 {
 }
 
 .right-half {
-  background-color: #fff;
+  background-color: #333;
   padding: 2rem;
   float: right;
   width: 49%;
-  color: black;
+  color: #fff;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease-in-out;
+  border: 1px solid #fff;
 }
 
 .right-half:hover {
@@ -45,9 +45,13 @@ h1 {
 }
 
 </style>
+
+<div class="page-sign h-100 w-100">
 <!-- <h4 style="margin: 0 auto;">Welcome to NoBrainer!</h4>
 <strong>Select your option below... -->
 <!-- </strong> -->
+
+<div class="welcomeBoxes">
 <a href="{{ route('login') }}">
 <div class="left-half">
   <article>
@@ -66,4 +70,6 @@ h1 {
 </article>
 </div>
 </a>
+</div>
+</div>
 @endsection

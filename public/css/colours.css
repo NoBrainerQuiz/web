@@ -1,0 +1,74 @@
+body {
+  /* background-color: #070764; */
+  /* color: #24a6f8; */
+  -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 12s; /* Chrome, Safari, Opera */
+    animation-name: example;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+  0%   {background-color: #45a3e5;}
+  20%  {background-color: #66bf39;}
+  60%  {background-color: #eb670f;}
+  80% {background-color: #864cbf;}
+  100%  {background-color: #45a3e5}
+}
+
+/* Standard syntax */
+@keyframes example {
+  0%   {background-color: #45a3e5;}
+  20%  {background-color: #66bf39;}
+  60%  {background-color: #eb670f;}
+  80% {background-color: #864cbf;}
+  100%  {background-color: #45a3e5}
+}
+
+.btnColour {
+    background-color: #333;
+    border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+}
+
+.btnColour:active {
+    background-color: #333 !important;
+    border-color: #fff !important;
+}
+
+.btnColour:hover {
+    background-color: #333;
+    border-color: #fff;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.form-control:focus {
+    border-color: #333 !important;
+    box-shadow: #333 !important;
+}
+
+input {
+   border: .150rem solid #333 !important;
+   border-radius: 0;
+}
+
+.text-muted {
+    color: #333 !important;
+}
+
+.welcomeBoxes {
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.mt-4 {
+    margin-top: 0 !important;
+}
