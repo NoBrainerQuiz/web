@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quiz;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class QuizController extends Controller
 {
@@ -40,17 +41,16 @@ class QuizController extends Controller
             'pin'      => 'required|string'
         ]);
 
-        // FIX XSS HERE ALSO
-        $quiz = Quiz::where('quiz_pin', $request->get('pin'))
+        try {
+            $quiz = Quiz::where('quiz_pin', $request->get('pin'))
                     ->where('active', 1)
-                    ->first();
-
-        if (!$quiz->exists()) {
+                    ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
             return back()->with('pin_error', 'Either the quiz doesn\'t exist, or it hasn\'t been activated');
-        } else {
-            //Add user to the socket.io stuff!
-            event(new \App\Events\addUser($request->get('username'))); //Adds the user to the socket stuff
-            return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz);
         }
+        
+        //Add user to the socket.io stuff!
+        event(new \App\Events\addUser($request->get('username'))); //Adds the user to the socket stuff
+        return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz);
     }
 }
