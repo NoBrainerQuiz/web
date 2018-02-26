@@ -5,7 +5,7 @@
 @section('container_content')
 
 <div class="page-sign h-100 w-100">
-        <form class="form-signin h-100 w-100" action="{{ route('register') }}" method="post">
+        <form class="form-signin" style="max-height: 100% !important;" action="{{ route('register') }}" method="post">
           {{ csrf_field() }}
         <a href="{{ route('welcome') }}">
           <h1 class="display-4 text-center mb-5">

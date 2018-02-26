@@ -7,9 +7,9 @@
 
 <!-- <div class="container-fluid pt-2 h-100 d-flex"> -->
  
-      <div class="page-sign w-100">
+      <div class="page-sign h-100 w-100">
       
-        <form action="{{ route('login') }}" method="post" class="form-signin">
+        <form action="{{ route('login') }}" method="post" class="form-signin" style="max-height: 100% !important;">
         {{ csrf_field() }}
         <a href="{{ route('welcome') }}">
           <h1 class="display-4 text-center mb-5">
@@ -27,6 +27,15 @@
     @endforeach
   </div>
   @endif
+
+  @if (session()->has('logoutMessage'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+        {{ session('logoutMessage') }}
+      </div>
+      @endif
 
           <div class="form-group">
             <div class="label-floating">

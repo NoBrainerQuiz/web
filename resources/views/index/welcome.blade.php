@@ -51,7 +51,7 @@ h1 {
 <strong>Select your option below... -->
 <!-- </strong> -->
 
-<div class="welcomeBoxes">
+<div class="welcomeBoxes" style="max-height: 100% !important;">
 <a href="{{ route('login') }}">
 <div class="left-half">
   <article>

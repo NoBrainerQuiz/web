@@ -1,6 +1,6 @@
 @extends('quiz_host.auth.layout.auth')
 
-@section('title', 'Request a password reset')
+@section('title', 'Reset your password')
 
 @section('container_content')
 
@@ -9,7 +9,7 @@
  
       <div class="page-sign h-100 w-100">
       
-        <form action="{{ route('password.email') }}" method="post" class="form-signin" style="max-height: 100% !important;">
+        <form action="{{ route('password.request') }}" method="post" class="form-signin" style="max-height: 100% !important;">
         {{ csrf_field() }}
         <a href="{{ route('welcome') }}">
           <h1 class="display-4 text-center mb-5">
@@ -26,28 +26,46 @@
   </div>
   @endif
 
-  @if ($errors->has('email'))
-  <div class="alert alert-danger alert-dismissible fade show" role="alert" style="">
+           @if ($errors->all())
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <strong>{{ $errors->first('email') }}</strong>
+    @foreach ($errors->all() as $error)
+     <strong>{{ $error }}</strong> <br />
+    @endforeach
   </div>
   @endif
+
+            <input type="hidden" name="token" value="{{ $token }}">
           <div class="form-group">
             <div class="label-floating">
-              <input id="username" type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Username/Email" maxlength="50" autofocus>
+              <input id="username" type="email" name="email" value="{{ $email or old('email') }}" class="form-control" placeholder="Username/Email" maxlength="50" autofocus>
               <label for="username">Email</label>
             </div>
           </div>
+
+          <div class="form-group">
+            <div class="label-floating">
+              <input id="password" type="password" name="password" class="form-control" placeholder="Username/Email" maxlength="50" autofocus>
+              <label for="password">New Password</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-floating">
+              <input id="password_confirm" type="password" name="password_confirmation" class="form-control" placeholder="Username/Email" maxlength="50" autofocus>
+              <label for="password_confirm">Confirm New Password</label>
+            </div>
+          </div>
           
-          <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block btnColour" />Send reset link <i class="fas fa-arrow-right"></i></button>
+          <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block btnColour" />Set new password <i class="fas fa-arrow-right"></i></button>
           <!-- <a href="../../index.html" class="btn btn-lg btn-primary btn-block btnColour">
           Sign in <i class="fas fa-arrow-right"></i>
           </a> -->
           <div class="mt-3 mb-3 text-center">
             <p class="mb-4">
-              Remembered your password? <a href="{{ route('login') }}">Go back to sign in</a>
+              Changed your mind? <a href="{{ route('login') }}">Go back to sign in</a>
             </p>
         </div>
         </form>
