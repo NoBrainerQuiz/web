@@ -19,8 +19,10 @@ Route::get('/', 'QuizController@showIndexWelcome')->name('welcome');
 Route::prefix('host')->group(function() {
     Auth::routes();
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-    Route::middleware(['auth'])->group(function() {
-        Route::get('dashboard', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
+    Route::prefix('dashboard')->middleware(['auth'])->group(function() {
+        Route::get('/', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
+        Route::get('quiz/manage', 'QuizController@showHostManageQuizzes')->name('quiz_host.dashboard.manage-quizzes');
+        Route::get('quiz/create', 'QuizController@create')->name('quiz_host.dashboard.quiz.create');
     });
 });
 

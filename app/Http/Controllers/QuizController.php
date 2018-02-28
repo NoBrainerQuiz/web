@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -15,7 +18,29 @@ class QuizController extends Controller
 
     public function showHostDashboard()
     {
-        return view('quiz_host.dashboard.index');
+        // Move to trait/facade/logic class @TODO
+        $quizCount = DB::table('user_quizzes')->where('user_id', Auth::user()->id)->count();
+        return view('quiz_host.dashboard.index')->with('quizCount', $quizCount);
+    }
+
+    public function showHostManageQuizzes()
+    {
+        $quizzes = Quiz::leftJoin('user_quizzes', 'user_quizzes.quiz_id', 'quizzes.id')
+                        ->join('users', 'user_quizzes.user_id', '=', 'users.id')
+                        ->where('users.id', Auth::user()->id)
+                        ->get();
+
+        return view('quiz_host.dashboard.manage-quizzes')->with('quizzes', $quizzes);
+    }
+
+    public function create()
+    {
+        return view('quiz_host.dashboard.quiz.create');
+    }
+
+    public function store()
+    {
+        $quiz = new Quiz;
     }
 
     public function showQuestion()
@@ -43,7 +68,7 @@ class QuizController extends Controller
 
         try {
             $quiz = Quiz::where('quiz_pin', $request->get('pin'))
-                    ->where('active', 1)
+                    ->where('active', '1')
                     ->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return back()->with('pin_error', 'Either the quiz doesn\'t exist, or it hasn\'t been activated');

@@ -21,6 +21,7 @@ class CreateQuizzesTable extends Migration
             $table->text('quiz_description');
             $table->string('quiz_pin');
             $table->enum('active', [0, 1])->nullable();
+            $table->bigInteger('total_plays')->nullable();
             $table->timestamps();
         });
     }

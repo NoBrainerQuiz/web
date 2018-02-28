@@ -37,8 +37,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Profile');
     }
 
-    public function quiz()
+    public function quizzes()
     {
-        return $this->hasMany('App\Models\Quiz');
+        return $this->belongsToMany(Quiz::class, 'user_quizzes','user_id', 'quiz_id');
     }
 }

@@ -19,6 +19,7 @@ class QuizzesTableSeeder extends Seeder
             'quiz_description' => 'This is a quiz to test your knowledge on Data Structures & Algorithms',
             'quiz_pin' => '1234',
             'active'  => '0',
+            'total_plays' => '0',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ],
@@ -27,6 +28,7 @@ class QuizzesTableSeeder extends Seeder
             'quiz_description' => 'This is a quiz to test your knowledge on Discrete Mathematics & Functional Programming',
             'quiz_pin' => '2345',
             'active'  => '1',
+            'total_plays' => '5',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ],
@@ -35,6 +37,7 @@ class QuizzesTableSeeder extends Seeder
             'quiz_description' => 'Fancy a challenge? Then test your knowhow on the colours of the rainbow',
             'quiz_pin' => '3456',
             'active'  => '1',
+            'total_plays' => '228',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]
