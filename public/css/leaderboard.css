@@ -1,0 +1,50 @@
+#placement-text, #leaderboard-title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#leaderboard-container > div {
+  color: #070764;
+}
+
+#first-container {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #880;
+  height: 10vh;
+  width: auto;
+}
+
+#second-container {
+  height: 10vh;
+  width: auto;
+  background-color: #888;
+}
+
+#third-container {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #742;
+  height: 10vh;
+  width: auto;
+}
+
+.score-text {
+  position: absolute;
+  z-index: 2;
+  -webkit-transform: rotate(35deg);
+  -moz-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+  margin-top: -13vh;
+  margin-left: 88%;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+@media all and (max-width: 480px) {
+  .score-text {
+    margin-left: 80%;
+  }
+}
