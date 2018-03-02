@@ -7,9 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/index.css"> <!-- Remember to reduce CSS files-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-    #assignName > * {
-      color: black;
-    }
+      #assignName > * {
+        color: black;
+      }
     </style>
     </head>
     <body>
@@ -23,22 +23,22 @@
         Loading...
       </div>
       <div id="ans-container">
-        <div class="ans-box" id="ans-1">
+        <div class="ans-box" id="ans1">
           <div class="center-container">
             Loading...
           </div>
         </div>
-        <div class="ans-box" id="ans-2">
+        <div class="ans-box" id="ans2">
           <div class="center-container">
             Loading...
           </div>
         </div>
-        <div class="ans-box" id="ans-3">
+        <div class="ans-box" id="ans3">
           <div class="center-container">
             Loading...
           </div>
         </div>
-        <div class="ans-box" id="ans-4">
+        <div class="ans-box" id="ans4">
           <div class="center-container">
             Loading...
           </div>
@@ -47,8 +47,6 @@
       <p id="version-number">Version 0.0.0.1Beta0.1</p>
 
       <!-- Model for username -->
-
-
       <div class="modal fade" id="assignName">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -59,11 +57,11 @@
             <div class="modal-body">
               <div class="form-group">
                 <label style="float: left;">Username:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="This will appear as your name in the game.">?</a></label><br />
-                <input id="password-entry" class="form-control" type="text" name="username" placeholder="Enter username...">
+                <input id="username" class="form-control" type="text" name="username" placeholder="Enter username...">
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Submit Username</button>
+              <button type="button" class="btn btn-primary"id="submit-username">Submit Username</button>
             </div>
           </div>
         </div>
@@ -92,12 +90,12 @@
         })
       </script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-          <script>
-             $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-              })
-          </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script>
+         $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
+      </script>
   </body>
 </html>

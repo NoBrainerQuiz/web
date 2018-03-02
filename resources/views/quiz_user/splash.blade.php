@@ -34,4 +34,49 @@
   @endif
 
   <p>Names will be displayed here...</p>
+
+  <!-- Model for username -->
+  <div class="modal fade" id="assignName">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Please enter a username to enter the quiz..</h5>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label style="float: left;">Username:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="This will appear as your name in the game.">?</a></label><br />
+            <input id="username" class="form-control" type="text" name="username" placeholder="Enter username...">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary"id="submit-username">Submit Username</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="//127.0.0.1:3000/socket.io/socket.io.js"></script>
+  <script>var socket = io('//127.0.0.1:3000');</script>
+  <script src="js/sockets.js"></script>
+
+  <script src="js/functions.js"></script>
+  <script>
+    let valid = false;
+    let username;
+    let allUserInfo;
+    let id = getCookie("randomVal");
+    socket.on('connect', function(data) {
+      socket.emit('validateUser', {id: id})
+      //socket.emit('addUser', {name: "Benny_boy", id: id})
+    })
+
+    //Needs uptading regularly for scores..?
+    socket.on('userInfo', function(data) {
+      console.log(data)
+      username = data.username
+      allUserInfo = data.allUsers
+    })
+  </script>
+
 @endsection

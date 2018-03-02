@@ -18,12 +18,21 @@ socket.on('connect', function(data) {
 })
 
 socket.on('showQuestion', function(data) {
-  updateScreen(data['questionData'])
+  updateScreen(data)
 })
 
 socket.on('signUserUp', function() {
   $('#assignName').modal({backdrop: 'static', keyboard: false})
   $('#assignName').modal('show');
+})
+
+$('#submit-username').on('click', function(event) {
+  let username = document.querySelector('#username').value
+  if (username != "") {
+    $('#submit-username').prop('disabled', true);
+    socket.emit('addUser', {name: username, id: id})
+    $('#assignName').modal('hide');
+  }
 })
 
 /*
@@ -33,7 +42,7 @@ socket.on('signUserUp', function() {
 */
 
 function updateScreen(data) {
-  let elements = ['question-no', 'timer', 'question', 'ans-1', 'ans-2', 'ans-3', 'ans-4']
+  let elements = ['question-no', 'timer', 'question', 'ans1', 'ans2', 'ans3', 'ans4']
   for(let i = 0; i < elements.length; i++) {
     document.querySelector('#'+elements[i]).textContent = data[elements[i]]
   }
