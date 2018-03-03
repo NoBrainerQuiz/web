@@ -14,7 +14,6 @@
     MAJOR:
       - How does each client know what they are? We NEED socket ids!
     BUGS:
-      - Refreshing the page will reset the timer. Needs to be kept server side.
       - Can have the same usernames
 */
 
@@ -36,6 +35,9 @@ let users = []
 let quizData = {}
 let index = 0
 
+const secondsPerQuestion = 10 //How many seconds to show per quiz
+const serverOffset = 5 //This means after the quiz has ended
+
 //Relative arrays containing objects from the database
 let quiz = {
   pin: 0,
@@ -49,6 +51,8 @@ redis.subscribe('questions', function(err, count) {
 });
 
 let userName;
+let loop;
+let resetGame = false //This variable is used to reset the client side info
 //Issue with web sockets
 redis.on('message', async function(channel, message) {
   console.log('Message Recieved: ' + message);
@@ -62,10 +66,12 @@ redis.on('message', async function(channel, message) {
     //Get all quiz questions and answers...
 
     database.getQuizData(quiz.pin).then(result => {
+      reset()
       console.log("Quiz data", result)
       quizData = result
       io.emit('showQuestion', quizData[index]['data'])
-      passQuestion(io)
+      //passQuestion(io)
+      loop=setInterval(passQuestion, ((secondsPerQuestion+serverOffset) * 1000)); //Starts a timer
     })
 
     io.emit('redirect', '/question')
@@ -89,9 +95,9 @@ redis.on('message', async function(channel, message) {
 io.on('connection', function(client) {
   //console.log(quiz)
   //Upon joining they will be shown the latest question
-
-  if (quizData.length > 0) {
-    io.emit('showQuestion', quizData[index-1]['data'])
+  console.log("Game state", quiz.state)
+  if (quizData.length > 0 || quiz.state == "Playing") {
+    runQuestion()
   }
 
   io.on('answer', function(data) {
@@ -125,16 +131,59 @@ io.on('connection', function(client) {
       }
     })
 
-  })
+})
 
 io.on('disconnect', function(data) {
   //Remove user from session...
 })
 
-function passQuestion(io) {
-  io.emit('showQuestion', quizData[index]['data']) //['question-no', 'timer', 'question', 'ans-1', 'ans-2', 'ans-3', 'ans-4']
-  //Check its not the end of the list.. e.g. end of the game
+let timer;
+function passQuestion() {
+  quiz.state = "Playing"
+  console.log("In", index)
+  io.emit('resetQuestion', {})
+  //If its the last question, clear the interval.
+  timer = new Date();
+  timer.setSeconds(timer.getSeconds() + secondsPerQuestion);
   index++
+  runQuestion()
+  if ((quizData.length-1) >= (index)) {
+    console.log("No more questions, the game is over.")
+    reset()
+  }
+
+  console.log("Left: ", quizData.length, index)
+
+  //Check its not the end of the list.. e.g. end of the game
+}
+
+function runQuestion() {
+  console.log("Running Q")
+  try {
+    if (typeof timer == "undefined") {
+      console.log("TIMER UNDEFINED")
+      timer = new Date();
+      timer.setSeconds(timer.getSeconds() + secondsPerQuestion);
+    }
+    console.log("Timer", timer)
+    quizData[index]['data'].timer = timer
+    //After 30 (Then another 10 seconds for the leaderboards) seconds go to the next question..
+    io.emit('showQuestion', quizData[index]['data']) //['question-no', 'timer', 'question', 'ans-1', 'ans-2', 'ans-3', 'ans-4']
+    //if then game is over, reset everything
+  } catch(e) {
+    console.log("Problem with indexing ", e)
+    reset()
+  }
+}
+
+function reset() {
+  console.log("Reset game")
+  clearInterval(loop)
+  //Redirect user
+  quizData = {}
+  index = 0
+  timer = undefined
+  quiz.state = "Ended"
 }
 
 async function getUserInfo(users, id) {

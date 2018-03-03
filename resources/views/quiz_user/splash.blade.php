@@ -33,8 +33,6 @@
   </div>
   @endif
 
-  <p>Names will be displayed here...</p>
-
   <!-- Model for username -->
   <div class="modal fade" id="assignName">
     <div class="modal-dialog" role="document">

@@ -67,6 +67,23 @@
         </div>
       </div>
 
+      <!-- Model for time up -->
+      <div class="modal fade" id="timeUpModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">&#x23F0; Time up!</h5>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label style="float: left;">The timer has been complete!</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Please do not remove this -->
       <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
       <script>var socket = io('//{{ Request::getHost() }}:3000');</script>

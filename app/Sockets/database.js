@@ -32,15 +32,14 @@ function init() {
 async function getQuizData(pin) {
   return new Promise((resolve, reject) => {
    let quizID;
-   var getID = "SELECT id q\
+   var getID = "SELECT id \
                 FROM quizzes \
                 WHERE quiz_pin = " + pin;
     //Gets the other data
     con.query(getID, function (err, result) {
       if (err) throw err;
       if (typeof result[0] != "undefined") {
-        quizID = result[0].q
-
+        quizID = result[0].id
         //Gets other data with the quizID we just got..
         var getAllOtherData = "SELECT quiz_questions.question AS question, quiz_questions.id AS questionID, quiz_questions.quiz_id AS quizID, question_choices.choice AS choice, \
                                question_choices.is_right_choice AS rightChoice, question_choices.question_id AS questionIDChoice \

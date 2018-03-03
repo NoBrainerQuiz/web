@@ -27,6 +27,10 @@
   opacity: 1;
 }
 
+#timeUpModal > * {
+  color: black;
+}
+
 #ans1 {
   background-color: #a33;
 }
