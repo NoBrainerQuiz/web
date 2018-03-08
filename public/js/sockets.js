@@ -28,6 +28,8 @@ socket.on('signUserUp', function() {
 
 socket.on('resetQuestion', function() {
   startedQuiz = false
+  removeModal()
+  resetAnswerModal()
 })
 
 $('#submit-username').on('click', function(event) {
@@ -79,6 +81,7 @@ function timer() {
      clearInterval(counter);
      //window.location = "/answer"; //needs to redirect using JS.
      document.getElementById("timer").innerHTML= "&#x23F0; Time Up!" //Incase there is ever a bug, this will show the user not an error but a friendly "Time Up"
+     socket.emit('getResults',{});
      $('#timeUpModal').modal({backdrop: 'static', keyboard: false})
      $('#timeUpModal').modal('show');
   } else {
