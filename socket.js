@@ -101,8 +101,12 @@ io.on('connection', function(client) {
     runQuestion(users)
   }
 
+  client.on('getLeaderboards', function(data) {
+    client.emit('displayLeaderBoards', {users: users})
+  })
+
   client.on('getResults', function(data) {
-    client.emit('showResults', users)
+    client.emit('showResults', {users: users, correct: currentCorrect})
   })
 
   client.on('answer', function(data) {
@@ -139,6 +143,7 @@ io.on('connection', function(client) {
     })
 
 })
+
 
 io.on('disconnect', function(data) {
   //Remove user from session...
@@ -201,8 +206,17 @@ function outputQuizResults() {
   //Display all the results
   //Then remove users...
   setTimeout(function(){
-    io.emit('displayScoreBoard', users)
+    //io.emit('displayScoreBoard', users)
+    io.emit('redirect', '/leaderboards')
   }, (secondsPerQuestion+(serverOffset-1)) * 1000);
+
+  //After a bit of time, reset the game entirly.
+  setTimeout(function(){
+    //io.emit('displayScoreBoard', users)
+    users = []
+    quiz.state = "Not_Playing"
+  }, ((secondsPerQuestion+(serverOffset-1))+ 10) * 1000);  //Times out 10 seconds after redirect
+
 }
 
 function reset() {

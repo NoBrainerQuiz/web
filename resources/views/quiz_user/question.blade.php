@@ -124,17 +124,19 @@
           allUserInfo = data.allUsers
         })
 
-        socket.on('showResults', function(data) {
+        socket.on('showResults', function(info) {
           //Not very secure
+          let data = info['users']
+          let correct = info['correct']
           for (let i = 0; i < data.length; i++) {
             if (data[i].id == id) {
               let text = ""
-              if (data[i].lastQuestionCorrect == "true") {
+              if (data[i].lastQuestionCorrect == true) {
                 document.querySelector('#answerTitle').innerHTML = "&#x1F601; Correct"
                 text = "You got the question correct!"
               } else {
                 document.querySelector('#answerTitle').innerHTML = "&#x1F622; Incorrect"
-                text = "You got the question incorrect! Better luck next time."
+                text = "You got the question incorrect! Better luck next time. Correct answer was " + correct
               }
               text += "</br></br> You currently have <b>" + data[i].questionsCorrect + "</b> questions correct."
 

@@ -53,6 +53,12 @@ class QuizController extends Controller
         return view('quiz_user.pin');
     }
 
+    public function leaderboards()
+    {
+        return view('quiz_user.leaderboard');
+    }
+
+
     public function showSplash()
     {
         return view('quiz_user.splash');
@@ -73,7 +79,7 @@ class QuizController extends Controller
         } catch (ModelNotFoundException $e) {
             return back()->with('pin_error', 'Either the quiz doesn\'t exist, or it hasn\'t been activated');
         }
-        
+
         //Add user to the socket.io stuff!
         event(new \App\Events\addUser($request->get('username'))); //Adds the user to the socket stuff
         return redirect()->route('quiz_user.showSplash')->with('quizData', $quiz);
