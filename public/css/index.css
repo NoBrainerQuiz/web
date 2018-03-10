@@ -27,7 +27,7 @@
   opacity: 1;
 }
 
-#timeUpModal > * {
+#timeUpModal > *, #answerUpModal > * {
   color: black;
 }
 

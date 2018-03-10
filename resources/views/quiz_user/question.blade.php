@@ -84,6 +84,24 @@
         </div>
       </div>
 
+      <!-- Model for answering question -->
+      <div class="modal fade" id="answerUpModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="answerTitle">&#x1F60A; Question Answered!</h5>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label style="float: left;" id="answerBody">Your quesiton has been answered. Please wait for the timer to end for the next question.</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <!-- Please do not remove this -->
       <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
       <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
@@ -105,6 +123,82 @@
           username = data.username
           allUserInfo = data.allUsers
         })
+
+        socket.on('showResults', function(info) {
+          //Not very secure
+          let data = info['users']
+          let correct = info['correct']
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].id == id) {
+              let text = ""
+              if (data[i].lastQuestionCorrect == true) {
+                document.querySelector('#answerTitle').innerHTML = "&#x1F601; Correct"
+                text = "You got the question correct!"
+              } else {
+                document.querySelector('#answerTitle').innerHTML = "&#x1F622; Incorrect"
+                text = "You got the question incorrect! Better luck next time. Correct answer was " + correct
+              }
+              text += "</br></br> You currently have <b>" + data[i].questionsCorrect + "</b> questions correct."
+
+              document.querySelector('#answerBody').innerHTML = text
+            }
+          }
+        })
+
+        socket.on('displayScoreBoard', function(data) {
+          console.log("GAME OVER", data)
+        })
+
+        function resetAnswerModal() {
+          document.querySelector('#answerTitle').innerHTML = "&#x1F60A; Question Answered!"
+          document.querySelector('#answerBody').innerHTML = "Your quesiton has been answered. Please wait for the timer to end for the next question."
+        }
+
+        $('#ans1').on('click', function(event) {
+          event.preventDefault();
+          socket.emit('answer', {
+            answer: document.querySelector('#ans1').textContent,
+            id: id
+          });
+          answered()
+        });
+
+        $('#ans2').on('click', function(event) {
+          event.preventDefault();
+          socket.emit('answer', {
+            answer: document.querySelector('#ans2').textContent,
+            id: id
+          });
+          answered()
+        });
+
+        $('#ans3').on('click', function(event) {
+          event.preventDefault();
+          socket.emit('answer', {
+            answer: document.querySelector('#ans3').textContent,
+            id: id
+          });
+          answered()
+        });
+
+        $('#ans4').on('click', function(event) {
+          event.preventDefault();
+          socket.emit('answer', {
+            answer: document.querySelector('#ans4').textContent,
+            id: id
+          });
+          answered()
+        });
+
+        function answered() {
+          $('#answerUpModal').modal({backdrop: 'static', keyboard: false})
+          $('#answerUpModal').modal('show');
+        }
+
+        function removeModal() {
+          $('#answerUpModal').modal('hide');
+        }
+
       </script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

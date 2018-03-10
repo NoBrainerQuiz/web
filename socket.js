@@ -15,6 +15,7 @@
       - How does each client know what they are? We NEED socket ids!
     BUGS:
       - Can have the same usernames
+      - When everyone answers a question, it still waits. You have to wait for the timer
 */
 
 /*
@@ -35,8 +36,8 @@ let users = []
 let quizData = {}
 let index = 0
 
-const secondsPerQuestion = 10 //How many seconds to show per quiz
-const serverOffset = 5 //This means after the quiz has ended
+const secondsPerQuestion = 5 //How many seconds to show per quiz
+const serverOffset = 7 //This means after the quiz has ended
 
 //Relative arrays containing objects from the database
 let quiz = {
@@ -97,12 +98,21 @@ io.on('connection', function(client) {
   //Upon joining they will be shown the latest question
   console.log("Game state", quiz.state)
   if (quizData.length > 0 || quiz.state == "Playing") {
-    runQuestion()
+    runQuestion(users)
   }
 
-  io.on('answer', function(data) {
+  client.on('getLeaderboards', function(data) {
+    client.emit('displayLeaderBoards', {users: users})
+  })
+
+  client.on('getResults', function(data) {
+    client.emit('showResults', {users: users, correct: currentCorrect})
+  })
+
+  client.on('answer', function(data) {
     //Validate the answer and show right or wrong screen
     console.log(data)
+    userAnswer(data.answer, data.id)
   })
 
   client.on('addUser', async function(data) {
@@ -112,8 +122,9 @@ io.on('connection', function(client) {
       username: data.name, //User different usernames. This needs some validation
       answeredQuestion: false,
       questionsCorrect: 0,
-      questionIncorrect: 0,
+      questionsIncorrect: 0,
       timeAnsweredIn: 0,
+      lastQuestionCorrect: false
     }
     users.push(newUser)
     let info = await getUserInfo(users, data.id)
@@ -133,23 +144,35 @@ io.on('connection', function(client) {
 
 })
 
+
 io.on('disconnect', function(data) {
   //Remove user from session...
 })
 
 let timer;
+//This is run when a new question is done
 function passQuestion() {
   quiz.state = "Playing"
   console.log("In", index)
   io.emit('resetQuestion', {})
+  resetUserQuestion()
   //If its the last question, clear the interval.
   timer = new Date();
   timer.setSeconds(timer.getSeconds() + secondsPerQuestion);
   index++
-  runQuestion()
+  console.log("Length============", )
+
+  //If quiz questions are just 1 or more if will display, even if the user refreshes the page.
   if ((quizData.length-1) >= (index)) {
     console.log("No more questions, the game is over.")
+    runQuestion()
     reset()
+    outputQuizResults()
+  } else if (quizData.length > 1) {
+    runQuestion()
+  } else {
+    reset()
+    console.log("Its over..")
   }
 
   console.log("Left: ", quizData.length, index)
@@ -157,6 +180,8 @@ function passQuestion() {
   //Check its not the end of the list.. e.g. end of the game
 }
 
+let currentCorrect;
+//This just renders all the correct information to the user connecting
 function runQuestion() {
   console.log("Running Q")
   try {
@@ -167,6 +192,7 @@ function runQuestion() {
     }
     console.log("Timer", timer)
     quizData[index]['data'].timer = timer
+    currentCorrect = quizData[index]['ans-correct']
     //After 30 (Then another 10 seconds for the leaderboards) seconds go to the next question..
     io.emit('showQuestion', quizData[index]['data']) //['question-no', 'timer', 'question', 'ans-1', 'ans-2', 'ans-3', 'ans-4']
     //if then game is over, reset everything
@@ -174,6 +200,23 @@ function runQuestion() {
     console.log("Problem with indexing ", e)
     reset()
   }
+}
+
+function outputQuizResults() {
+  //Display all the results
+  //Then remove users...
+  setTimeout(function(){
+    //io.emit('displayScoreBoard', users)
+    io.emit('redirect', '/leaderboards')
+  }, (secondsPerQuestion+(serverOffset-1)) * 1000);
+
+  //After a bit of time, reset the game entirly.
+  setTimeout(function(){
+    //io.emit('displayScoreBoard', users)
+    users = []
+    quiz.state = "Not_Playing"
+  }, ((secondsPerQuestion+(serverOffset-1))+ 10) * 1000);  //Times out 10 seconds after redirect
+
 }
 
 function reset() {
@@ -186,13 +229,38 @@ function reset() {
   quiz.state = "Ended"
 }
 
+function userAnswer(answer, id) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].id == id && users[i].answeredQuestion == false) {
+      if (answer == currentCorrect) {
+        users[i].questionsCorrect += 1
+        users[i].lastQuestionCorrect = true
+      } else {
+        users[i].questionsIncorrect += 1
+      }
+      users[i].answeredQuestion = true
+    }
+  }
+}
+
+function resetUserQuestion() {
+  //Resets the user information, if a user has not answered a question, they will get +1 to their incorrect answered.
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].answeredQuestion == false) {
+      users[i].questionsIncorrect += 1
+    } else {
+      users[i].answeredQuestion = false
+      users[i].lastQuestionCorrect = false
+    }
+  }
+}
+
 async function getUserInfo(users, id) {
   let validUser = false;
   let allUsernames = [];
   let yourUsername;
   for (let i = 0; i < users.length; i++) {
     allUsernames.push(users[i].username)
-    console.log(users[i].id, id)
     if (users[i].id == id) {
       validUser = true
       yourUsername = users[i].username
