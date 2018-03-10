@@ -8,9 +8,9 @@
 let mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
-  user: "root",
+  user: "homestead",
   database: 'nobrainer',
-  password: ""
+  password: "secret"
 });
 
 /*

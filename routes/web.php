@@ -23,6 +23,7 @@ Route::prefix('host')->group(function() {
         Route::get('/', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
         Route::get('quiz/manage', 'QuizController@showHostManageQuizzes')->name('quiz_host.dashboard.manage-quizzes');
         Route::get('quiz/create', 'QuizController@create')->name('quiz_host.dashboard.quiz.create');
+        Route::post('quiz/store', 'QuizController@store')->name('quiz_host.dashboard.quiz.store');
     });
 });
 

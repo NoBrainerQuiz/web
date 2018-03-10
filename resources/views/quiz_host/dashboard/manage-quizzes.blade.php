@@ -22,6 +22,12 @@
           </a>
   </p>
 
+  @if (session()->has('quizCreated'))
+  <div class="alert alert-success">
+      {{ session('quizCreated') }}
+  </div>
+  @endif
+
   @if (count($quizzes) != 0)
     
   <table class="table table-striped">
@@ -73,15 +79,16 @@
         <br /><br />
     
 
-        <form method="post" action="/hello">
-  <div class="form-group">
+        <form method="post" action="{{ route('quiz_host.dashboard.quiz.store') }}">
+        {{ csrf_field() }}
+        <div class="form-group">
     <label for="exampleInputEmail1">Quiz Name</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quiz name...">
+    <input type="text" maxlength="30" class="form-control" name="quiz_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quiz name...">
     <small id="emailHelp" class="form-text text-muted">Choose a descriptive yet simple name for your quiz (Max 30 chars)</small>
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Quiz Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="And write a nice description..." rows="3"></textarea>
+    <textarea class="form-control" maxlength="500" name="quiz_description" id="exampleFormControlTextarea1" placeholder="And write a nice description..." rows="3"></textarea>
     <small id="emailHelp" class="form-text text-muted">Enter a description for the quiz so people know what it's about</small>
   </div>
 
