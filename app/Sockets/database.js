@@ -1,4 +1,6 @@
 /*
+  Author: UP805717 (springjben)
+
   This file is for all the MySQL queries and database information
 */
 
@@ -8,9 +10,9 @@
 let mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
-  user: "homestead",
+  user: "root",
   database: 'nobrainer',
-  password: "secret"
+  password: ""
 });
 
 /*
@@ -58,6 +60,9 @@ async function getQuizData(pin) {
   })
 }
 
+/*
+  After getting the data from the database, it formats all of the data into
+*/
 function sortData(data) {
   let allQuizData = []
   let index = 0;

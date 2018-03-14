@@ -83,7 +83,7 @@
             document.querySelector('#second-score').textContent = scoreboard[i].score
             document.querySelector('#second-score').style.display = "block"
             document.querySelector('#second-container').style.display = "block"
-          } else if (i == 3) {
+          } else if (i == 2) {
             document.querySelector('#name3').textContent = scoreboard[i].name
             document.querySelector('#third-score').textContent =  scoreboard[i].score
             document.querySelector('#second-score').style.display = "block"

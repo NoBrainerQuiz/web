@@ -1,5 +1,12 @@
 <?php
 
+/*
+  Author: UP805717 (springjben)
+  
+  This file is used for Laravel events when a user is added to the site.
+  This event is fired off when a user creates a username (only in the /pin page)
+*/
+
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
@@ -34,6 +41,7 @@ class addUser implements ShouldBroadcast
      */
      public function broadcastOn()
      {
+         //This is passing the data onto the addUser channel (using Redis)
          return ['addUser'];
      }
 }
