@@ -40,6 +40,15 @@ class QuizzesTableSeeder extends Seeder
             'total_plays' => '228',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
+        ],
+        [
+            'quiz_name' => 'Claudia please give us marks',
+            'quiz_description' => 'sdfsdf',
+            'quiz_pin' => '9876',
+            'active'  => '1',
+            'total_plays' => '0',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]
         ]);
     }

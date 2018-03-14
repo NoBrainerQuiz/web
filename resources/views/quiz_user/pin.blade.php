@@ -5,7 +5,7 @@
 @section('container_content')
 
      <div class="page-sign h-100 w-100">
-      
+
       <form action="{{ route('pin-enter') }}" method="post" class="form-signin" style="max-height: 100% !important;">
       {{ csrf_field() }}
       <a href="{{ route('welcome') }}">
@@ -35,7 +35,7 @@
 @endif
 
 @if (session()->has('pin_error'))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="pinError">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -56,7 +56,7 @@
             <label for="pin">Enter PIN</label>
           </div>
         </div>
-        
+
         <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block btnColour" />Let's go <i class="fas fa-arrow-right"></i></button>
         <!-- <a href="../../index.html" class="btn btn-lg btn-primary btn-block btnColour">
         Sign in <i class="fas fa-arrow-right"></i>

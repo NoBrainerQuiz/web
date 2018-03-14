@@ -25,6 +25,10 @@ class UserQuizzesTableSeeder extends Seeder
         [
             'user_id' => 1,
             'quiz_id' => 3
+        ],
+        [
+            'user_id' => 1,
+            'quiz_id' => 4
         ]
         ]);
     }

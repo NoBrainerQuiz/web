@@ -53,22 +53,22 @@ h1 {
 
 <div class="welcomeBoxes" style="max-height: 100% !important;">
 <a href="{{ route('login') }}">
-<div class="left-half">
+<button class="left-half">
   <article>
   <h1><i class="fas fa-plus"></i></h1>
   <h1>CREATE QUIZ</h1>
   <p>Want to create a quiz of your own? For students, friends or colleagues? This option is for you!</p>
 </article>
-</div>
+</button>
 </a>
 <a href="{{ route('pin-enter') }}">
-<div class="right-half">
+<button class="right-half">
   <article>
     <h1><i class="fas fa-pencil-alt"></i></h1>
   <h1>TAKE QUIZ</h1>
   <p>Have a quiz PIN handy? Then test yourself now by taking part in a vast database of quizzes!</p>
 </article>
-</div>
+</button>
 </a>
 </div>
 </div>

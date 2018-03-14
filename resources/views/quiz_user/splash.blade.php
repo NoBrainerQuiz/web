@@ -9,7 +9,7 @@
   <h2 style="margin: 0 auto;">{{ session('quizData')->quiz_name }}</h4>
   <small>{{ session('quizData')->quiz_description }}</small><br /><br />
 @endif
-<h5 style="margin: 0 auto;">Please wait for the host to start the quiz..</h5></br></br>
+<h5 style="margin: 0 auto;" id="waitMessage">Please wait for the host to start the quiz..</h5></br></br>
 
 @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; text-align: left;">
@@ -44,11 +44,11 @@
         <div class="modal-body">
           <div class="form-group">
             <label style="float: left;">Username:&nbsp;&nbsp;<a href="#" class="badge badge-danger" data-toggle="tooltip" data-placement="right" title="This will appear as your name in the game.">?</a></label><br />
-            <input id="username" class="form-control" type="text" name="username" placeholder="Enter username...">
+            <input id="username" class="form-control" type="text" name="username" placeholder="Enter username..." autofocus>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary"id="submit-username">Submit Username</button>
+          <button type="button" class="btn btn-primary" id="submit-username">Submit Username</button>
         </div>
       </div>
     </div>

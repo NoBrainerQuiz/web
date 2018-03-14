@@ -25,6 +25,14 @@ class QuestionsTableSeeder extends Seeder
         [
             'quiz_id' => 3,
             'question' => 'Which one of the following is a colour of the rainbow?'
+        ],
+        [
+            'quiz_id' => 4,
+            'question' => '1?'
+        ],
+        [
+            'quiz_id' => 4,
+            'question' => '2?'
         ]
         ]);
     }

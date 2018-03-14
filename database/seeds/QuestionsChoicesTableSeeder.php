@@ -56,7 +56,7 @@ class QuestionsChoicesTableSeeder extends Seeder
             'is_right_choice' => '1', // this is the right answer again (hi)
             'choice' => '{1, 34, 56, {50, 67, 123, 978}, 54, 12, 17}'
         ],
-            // Choices for question 3  
+            // Choices for question 3
         [
             'question_id' => 3,
             'is_right_choice' => '1', // this is also right answer...last time
@@ -74,6 +74,48 @@ class QuestionsChoicesTableSeeder extends Seeder
         ],
         [
             'question_id' => 3,
+            'is_right_choice' => '0',
+            'choice' => 'Saucy Strawberry'
+        ],
+        // Choices for question 4
+        [
+            'question_id' => 4,
+            'is_right_choice' => '1', // this is also right answer...last time
+            'choice' => 'Right'
+        ],
+        [
+            'question_id' => 4,
+            'is_right_choice' => '0',
+            'choice' => 'Cheeky Cherry'
+        ],
+        [
+            'question_id' => 4,
+            'is_right_choice' => '0',
+            'choice' => 'Racing Green'
+        ],
+        [
+            'question_id' => 4,
+            'is_right_choice' => '0',
+            'choice' => 'Saucy Strawberry'
+        ],
+        // Choices for question 5
+        [
+            'question_id' => 5,
+            'is_right_choice' => '1', // this is also right answer...last time
+            'choice' => 'Right'
+        ],
+        [
+            'question_id' => 5,
+            'is_right_choice' => '0',
+            'choice' => 'Cheeky Cherry'
+        ],
+        [
+            'question_id' => 5,
+            'is_right_choice' => '0',
+            'choice' => 'Racing Green'
+        ],
+        [
+            'question_id' => 5,
             'is_right_choice' => '0',
             'choice' => 'Saucy Strawberry'
         ]
