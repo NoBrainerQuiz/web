@@ -7,7 +7,13 @@
 
 @section('breadcrumb', 'Manage Quizzes')
 
+<style>
 
+  in-display {
+    display: inline-block !important;
+  }
+
+</style>
 <h2>
     Manage your quizzes
   </h2>
@@ -28,37 +34,68 @@
   </div>
   @endif
 
+  @if (session()->has('quizDeleted'))
+  <div class="alert alert-success">
+      {{ session('quizDeleted') }}
+  </div>
+  @endif
+
   @if (count($quizzes) != 0)
     
-  <table class="table table-striped">
+  <table class="table table-striped" data-toggle="dataTable" data-form="deleteForm">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">PIN</th>
       <th scope="col">Quiz Name</th>
-      <th scope="col">Quiz Description</th>
       <th scope="col">Active</th>
-      <th scope="col">Tools</th>
+      <th scope="col">Questions</th>
+      <th scope="col">Quiz Tools</th>
     </tr>
   </thead>
   <tbody>
     @foreach ($quizzes as $quiz) 
     <tr>
-      <th scope="row">{{ $quiz->quiz_id }}</th>
-      <td>{{ $quiz->quiz_name }}</td>
-      <td>{{ $quiz->quiz_description }}</td>
-      <td>{{ $quiz->active }}</td>
-      <td><a href="" style="color: #34495e; display: inline-block !important;"><i class="fas fa-pen-square" data-toggle="tooltip" title="Edit"></i></a>&nbsp;<a href="" style="color: #34495e; display: inline-block !important;"><i class="fas fa-trash-alt" data-toggle="tooltip" title="Delete"></i></a></td>
+      <th scope="row">{{ $quiz->quiz_pin }}</th>
+      <td data-toggle="tooltip" data-placement="top" title="{{ $quiz->quiz_description }}">{{ $quiz->quiz_name }}</td>
+      <td>@if ($quiz->active == '0') <a href="" style="color: red;" data-toggle="tooltip" data-placement="top" title="Click to activate">Not active</a> @else <a href="" data-toggle="tooltip" data-placement="top" title="Click to deactivate" style="color: green;">Active</a> @endif</td>
+      <td>
+        <button type="submit" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Add questions to this quiz">
+        Add <span class="fas fa-plus-circle" aria-hidden="true"></span>
+      </button>
+      <button type="submit" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="View questions for this quiz">
+        View All <span class="fas fa-eye" aria-hidden="true"></span>
+      </button>
+</td>
+      <td>
+        <div class="btn-toolbar">
+      <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit this quiz">
+      Edit <span class="fas fa-pen-square" aria-hidden="true"></span>
+      </button>
+      &nbsp;
+      {!! Form::model($quiz, ['method' => 'delete', 'route' => ['quiz_host.dashboard.quiz.delete', $quiz->quiz_id], 'class' => 'form-inline form-delete']) !!}
+      {!! Form::hidden('id', $quiz->quiz_id) !!}
+      {!! Form::button('Delete <i class="fas fa-trash-alt"></i>', ['data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Delete this quiz', 'type' => 'submit', 'class' => 'btn btn-sm btn-info', 'name' => 'delete_modal']) !!}
+      {!! Form::close() !!}
+</div>
+    </td>
     </tr>
     @endforeach
     </tbody>
 </table>
   @else
-  You do not have any quizzes!
+  <div class="alert alert-info">
+      You don't seem to have any quizzes, why not <a href="{{ route('quiz_host.dashboard.quiz.create') }}">create one</a>?
+  </div>
   @endif
   
   <div class="callout callout-info">
-    <h5>Need some assistance?</h5>
-    <p>You can view our NoBrainer documentation <a href="#">here</a>.</p>
+    <h5>Quick tips:</h5>
+    <p>
+      <li>Hover your cursor over the quiz name to view the description.</li>
+      <li>Click the <span style="color: green" >active</span> and <span style="color: red">not active</span>
+    links respectively to toggle between activating and deactivating your quizzes!
+    </li>
+  </p>
   </div>
 
 
@@ -103,6 +140,48 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+  <!-- QUIZ CREATION MODAL -->
+  <!-- Modal -->
+  <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="deleteQuizConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteQuizConfirmLabel">Delete Quiz <i class="fas fa-trash-alt"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        Are you sure you want to delete this quiz?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-danger" id="delete-btn">Delete Quiz <i class="fas fa-trash-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  $('table[data-form="deleteForm"]').on('click', '.form-delete', function(e){
+    e.preventDefault();
+    var $form=$(this);
+    $('#confirm').modal({ backdrop: 'static', keyboard: false })
+        .on('click', '#delete-btn', function(){
+            $form.submit();
+        });
+});
+</script>
+
 
 
 @endsection

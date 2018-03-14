@@ -86,6 +86,15 @@ class QuizController extends Controller
         return view('quiz_host.dashboard.quiz.edit')->with('quiz', $quiz);
     }
 
+    public function activate($id) 
+    {
+        try {
+            $quiz = Quiz::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('quiz_host.dashboard.manage-quizzes');
+        }
+    }
+
     public function destroy($id) 
     {
         try {
