@@ -81,43 +81,64 @@ class QuestionsChoicesTableSeeder extends Seeder
         [
             'question_id' => 4,
             'is_right_choice' => '1', // this is also right answer...last time
-            'choice' => 'Right'
+            'choice' => 'Hopefully'
         ],
         [
             'question_id' => 4,
             'is_right_choice' => '0',
-            'choice' => 'Cheeky Cherry'
+            'choice' => 'No'
         ],
         [
             'question_id' => 4,
             'is_right_choice' => '0',
-            'choice' => 'Racing Green'
+            'choice' => 'A million percent yes!'
         ],
         [
             'question_id' => 4,
             'is_right_choice' => '0',
-            'choice' => 'Saucy Strawberry'
+            'choice' => 'Who knows?'
         ],
         // Choices for question 5
         [
             'question_id' => 5,
-            'is_right_choice' => '1', // this is also right answer...last time
-            'choice' => 'Right'
+            'is_right_choice' => '0', // this is also right answer...last time
+            'choice' => '2010'
         ],
         [
             'question_id' => 5,
             'is_right_choice' => '0',
-            'choice' => 'Cheeky Cherry'
+            'choice' => '2012'
+        ],
+        [
+            'question_id' => 5,
+            'is_right_choice' => '1',
+            'choice' => '2008'
         ],
         [
             'question_id' => 5,
             'is_right_choice' => '0',
-            'choice' => 'Racing Green'
+            'choice' => '2003'
+        ],
+        // Choices for question 6
+        [
+            'question_id' => 6,
+            'is_right_choice' => '0', // this is also right answer...last time
+            'choice' => 'No'
         ],
         [
-            'question_id' => 5,
+            'question_id' => 6,
             'is_right_choice' => '0',
-            'choice' => 'Saucy Strawberry'
+            'choice' => 'Whats even is No-brainer?'
+        ],
+        [
+            'question_id' => 6,
+            'is_right_choice' => '0',
+            'choice' => 'Possibly'
+        ],
+        [
+            'question_id' => 6,
+            'is_right_choice' => '1',
+            'choice' => 'Yes'
         ]
         ]);
     }

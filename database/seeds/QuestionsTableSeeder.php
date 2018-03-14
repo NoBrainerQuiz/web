@@ -28,11 +28,15 @@ class QuestionsTableSeeder extends Seeder
         ],
         [
             'quiz_id' => 4,
-            'question' => '1?'
+            'question' => 'Will Claudia gives us a good mark?'
         ],
         [
             'quiz_id' => 4,
-            'question' => '2?'
+            'question' => 'When was Github created?'
+        ],
+        [
+            'quiz_id' => 4,
+            'question' => 'Are we the best INSE group?'
         ]
         ]);
     }

@@ -6,16 +6,16 @@
 
 
 <!-- <div class="container-fluid pt-2 h-100 d-flex"> -->
- 
+
       <div class="page-sign h-100 w-100">
-      
+
         <form action="{{ route('login') }}" method="post" class="form-signin" style="max-height: 100% !important;">
         {{ csrf_field() }}
         <a href="{{ route('welcome') }}">
           <h1 class="display-4 text-center mb-5">
           <img style="max-width:50%; max-height:50%;" src="{{ asset('img/noBrainerWhite.png') }}" id="noBrainer" alt="logo" />
           </h1>
-</a>
+        </a>
 
           @if ($errors->all())
 <div class="alert alert-danger alert-dismissible fade show" role="alert" style="">

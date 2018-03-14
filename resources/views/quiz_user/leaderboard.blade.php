@@ -14,7 +14,9 @@
   </head>
   <body>
     <div class="container" id="top-container">
-      <img src="assets/noBrainer.png" alt="Logo" onclick=parent.location="index.html" id="logo"/>
+      <h1 class="display-4 text-center mb-5"></br>
+        <img style="max-width:20%; max-height:20%;" src="{{ asset('img/noBrainerWhite.png') }}" id="noBrainer" alt="logo" />
+      </h1>
     </div>
     <div class="container container-fluid text-center" id="main-page-container">
       <div class="container container-fluid" id="main-content">
@@ -29,7 +31,7 @@
           <p class="score-text" id="third-score" style="display:none">-1pts</p>
         </div>
       </div>
-        <footer id="version-number">Version 0.0.Alpha.0.1</footer>
+        <footer id="version-number">Version 0.0.1-Alpha-1</footer> <!-- Versioning needs updating -->
     </div>
     <!--External Scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
