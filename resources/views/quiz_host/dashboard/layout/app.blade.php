@@ -33,18 +33,16 @@
     <a href="{{ route('quiz_host.dashboard') }}" class="sidebar-nav-link">
     <i class="fas fa-home"></i> Dashboard
     </a>
-    <a href="{{ route('quiz_host.dashboard.manage-quizzes') }}" class="sidebar-nav-link">
-    <i class="fas fa-comments"></i> My Quizzes
-    </a>
-    <!-- <div class="sidebar-nav-group">
+   
+    <div class="sidebar-nav-group">
       <a href="#components" class="sidebar-nav-link collapsed" data-toggle="collapse" data-parent="#sidebar-nav">
       <i class="fas fa-comments"></i> My Quizzes
       </a>
       <div id="components" class="sidebar-nav-group collapse">
-      <a href="./pages/components/input-suggestion.html" class="sidebar-nav-link"><i class="fas fa-plus"></i> Create new quiz</a>
+      <a href="{{ route('quiz_host.dashboard.quiz.create') }}" class="sidebar-nav-link"><i class="fas fa-plus"></i> Create new quiz</a>
         <a href="{{ route('quiz_host.dashboard.manage-quizzes') }}" class="sidebar-nav-link"><i class="fas fa-eye"></i> Manage quizzes</a>
       </div>
-    </div> -->
+    </div>
     <div class="sidebar-nav-group">
       <a href="#content" class="sidebar-nav-link collapsed" data-toggle="collapse" data-parent="#sidebar-nav">
         <i class="fas fa-list-ul"></i> My Subjects

@@ -16,11 +16,11 @@
    quizzes and questions, as well as your own account settings and profile options.
   </p>
   <p>
-    So far you've managed to create <strong>{{ $quizCount }}</strong> {{ ($quizCount < 2) ? 'quiz' : 'quizzes' }}! 
+    So far you've managed to create <strong>{{ $quizCount }}</strong> {{ ($quizCount == 1) ? 'quiz' : 'quizzes' }}! 
     @if ($quizCount == 0)
-        Get started by creating your <a href="">first quiz</a>.
+        Get started by creating your <a href="{{ route('quiz_host.dashboard.quiz.create') }}">first quiz</a>.
     @else
-    Why not <a href="">create another</a>?
+    Why not <a href="{{ route('quiz_host.dashboard.quiz.create') }}">create another</a>?
     @endif  
   </p>
   <div class="callout callout-info">

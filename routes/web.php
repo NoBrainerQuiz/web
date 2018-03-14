@@ -23,6 +23,9 @@ Route::prefix('host')->group(function() {
         Route::get('/', 'QuizController@showHostDashboard')->name('quiz_host.dashboard');
         Route::get('quiz/manage', 'QuizController@showHostManageQuizzes')->name('quiz_host.dashboard.manage-quizzes');
         Route::get('quiz/create', 'QuizController@create')->name('quiz_host.dashboard.quiz.create');
+        Route::post('quiz/store', 'QuizController@store')->name('quiz_host.dashboard.quiz.store');
+        Route::delete('quiz/{id}/delete', 'QuizController@destroy')->name('quiz_host.dashboard.quiz.delete');
+        Route::post('quiz/{id}/activate', 'QuizController@activate')->name('quiz_host.dashboard.quiz.activate');
     });
 });
 
