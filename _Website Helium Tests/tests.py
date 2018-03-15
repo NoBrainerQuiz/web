@@ -1,6 +1,9 @@
 from helium.api import *
 import time
 
+#Please make sure you have Google Chrome installed to do these tests.
+#After every test please restart the node socket server! This is very important
+
 """start_chrome("google.com/?hl=en")
 write("Helium")
 press(ENTER)
@@ -44,6 +47,8 @@ def tryPinExist():
 def delay(seconds):
     time.sleep(seconds)
 
+#Validation test
+
 #Test that you can't have a blank username
 def checkUsernameVoid():
     click(Button('Submit Username'))
@@ -51,6 +56,37 @@ def checkUsernameVoid():
         print("Test is successful as username cannot be left blank")
     else:
         print("Test has failed, username field should not be able to be left blank")
+
+def checkUsernameSubmits():
+    click(S("#username"))
+    write("UP805717")
+    delay(1)
+    click(Button('Submit Username'))
+    if Button('Submit Username').is_enabled() == False:
+        print("Test is successful as it contains text")
+    else:
+        print("Test has failed, button should disable after submit")
+
+def hostQuizStart():
+    start_chrome("http://127.0.0.1:8000/quiz/start/9876")
+    if Text("event fired.. users should have been redirected for pin: 9876").exists():
+        print("Test is successful, the quiz host has started the quiz")
+    else:
+        print("Test has failed, the quiz has not been started")
+    kill_browser()
+
+def hasUserBeenRedirect(testText):
+    if Text(testText).exists():
+        print("Test is successful, the user has been redirected")
+    else:
+        print("Test has failed, the user has NOT been redirected")    
+
+def answerQuestion(buttonText):
+    click(Button(buttonText))
+    if Button(buttonText).is_enabled() == False:
+        print("Test success, it answered a question")
+    else:
+        print("Test failed, it should have answered a question")
 
 def main():
     browserDriver = openPinPage()
@@ -61,6 +97,17 @@ def main():
     tryPinExist() #3
     delay(2)
     checkUsernameVoid() #4
-
+    delay(2)
+    checkUsernameSubmits() #5
+    delay(1)
+    hostQuizStart() #6 - Starts the quiz
+    set_driver(browserDriver)
+    delay(1)
+    hasUserBeenRedirect("Will Claudia gives us a good mark?") #7
+    delay(1)
+    answerQuestion("Hopefully") #8
+    delay(1)
+    
+    #kill_browser()
 
 main()
