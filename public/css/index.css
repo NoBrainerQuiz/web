@@ -33,22 +33,26 @@
 
 #ans1 {
   background-color: #a33;
+  border-width:0;
 }
 
 #ans2 {
   background-color: #cf3;
   margin-left: 50vw;
+  border-width:0;
 }
 
 #ans3 {
   background-color: #33a;
   margin-top: 25vh;
+  border-width:0;
 }
 
 #ans4 {
   background-color: #3a3;
   margin-top: 25vh;
   margin-left: 50vw;
+  border-width:0;
 }
 
 #question {

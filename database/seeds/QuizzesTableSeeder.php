@@ -42,8 +42,8 @@ class QuizzesTableSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s')
         ],
         [
-            'quiz_name' => 'Claudia please give us marks',
-            'quiz_description' => 'sdfsdf',
+            'quiz_name' => 'The Demo Quiz!',
+            'quiz_description' => 'This is just for the demo quiz. It contains three questions.',
             'quiz_pin' => '9876',
             'active'  => '1',
             'total_plays' => '0',

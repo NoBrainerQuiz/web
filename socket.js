@@ -39,7 +39,7 @@ let users = []
 let quizData = {}
 let index = 0
 
-const secondsPerQuestion = 12 //How many seconds to show per quiz
+const secondsPerQuestion = 15 //How many seconds to show per quiz
 const serverOffset = 6 //This means after the quiz has ended
 
 //Relative arrays containing objects from the database

@@ -23,26 +23,27 @@
         Loading...
       </div>
       <div id="ans-container">
-        <div class="ans-box" id="ans1">
+        <button class="ans-box" id="ans1">
+          <h1>Loading answer 1...</h1>
           <div class="center-container">
-            Loading...
+            sdf
           </div>
-        </div>
-        <div class="ans-box" id="ans2">
+        </button>
+        <button class="ans-box" id="ans2">
           <div class="center-container">
-            Loading...
+            Loading answer 2...
           </div>
-        </div>
-        <div class="ans-box" id="ans3">
+        </button>
+        <button class="ans-box" id="ans3">
           <div class="center-container">
-            Loading...
+            Loading answer 3...
           </div>
-        </div>
-        <div class="ans-box" id="ans4">
+        </button>
+        <button class="ans-box" id="ans4">
           <div class="center-container">
-            Loading...
+            Loading answer 4...
           </div>
-        </div>
+        </button>
       </div>
       <p id="version-number">Version 0.0.0.1Beta0.1</p>
 
@@ -154,6 +155,20 @@
           document.querySelector('#answerBody').innerHTML = "Your quesiton has been answered. Please wait for the timer to end for the next question."
         }
 
+        function disableAllButtons() {
+          $('#ans1').prop('disabled', true);
+          $('#ans2').prop('disabled', true);
+          $('#ans3').prop('disabled', true);
+          $('#ans4').prop('disabled', true);
+        }
+
+        function enableAllButtons() {
+          $('#ans1').prop('disabled', false);
+          $('#ans2').prop('disabled', false);
+          $('#ans3').prop('disabled', false);
+          $('#ans4').prop('disabled', false);
+        }
+
         $('#ans1').on('click', function(event) {
           event.preventDefault();
           socket.emit('answer', {
@@ -193,6 +208,7 @@
         function answered() {
           $('#answerUpModal').modal({backdrop: 'static', keyboard: false})
           $('#answerUpModal').modal('show');
+          disableAllButtons()
         }
 
         function removeModal() {

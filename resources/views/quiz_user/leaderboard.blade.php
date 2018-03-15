@@ -42,7 +42,7 @@
     <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
     <script src="js/functions.js"></script>
     <script>
-      let scoreboard = []
+      let scoreboard = [] //This stores all of the
       socket.emit('getLeaderboards', {});
       socket.on('displayLeaderBoards', function(data2) {
         let data = data2['users'].reverse()

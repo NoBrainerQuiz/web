@@ -53,6 +53,8 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
+**Set BROADCAST_DRIVER=redis in your .env file*
+
 **Starting Sockets and Redis (Redis needs installing beforehand)**
 ```bash
 $ redis-server --port 3000

@@ -60,18 +60,18 @@
 
   <script src="js/functions.js"></script>
   <script>
-    let valid = false;
-    let username;
-    let allUserInfo;
-    let id = getCookie("randomVal");
+    let valid = false; //Variable to determine a users authentication
+    let username; //stores their username
+    let allUserInfo; //stores all other users currently playing
+    let id = getCookie("randomVal"); //This calls a function to get their cookie ID. This validates the user.
+
+    //Upon loading the page, it communicates with the server to determine if the user is valid and exists on the server too.
     socket.on('connect', function(data) {
       socket.emit('validateUser', {id: id})
-      //socket.emit('addUser', {name: "Benny_boy", id: id})
     })
 
-    //Needs uptading regularly for scores..?
+    //When the server passes the users information, it updates the javascript variables for my other functions to use.
     socket.on('userInfo', function(data) {
-      console.log(data)
       username = data.username
       allUserInfo = data.allUsers
     })
