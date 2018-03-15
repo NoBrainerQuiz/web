@@ -45,25 +45,53 @@ $ cp .env.example .env
 $ composer install && npm install
 ```
 
-**Run migrations and seed database**
+**Run migrations, seed database and starting the server**
 ```bash
 $ php artisan migrate
 ```
 ```bash
 $ php artisan db:seed
 ```
+```bash
+$ php artisan serve
+```
 
-**Set BROADCAST_DRIVER=redis in your .env file*
+**Configure MySQL***
+```
+Download a MySQL server.
+Make the database by doing: create database nobrainer;
+
+```
+
+**Setting up your .env file and MySQL**
+
+```
+Make sure all of the settings are the same in your file:
+
+BROADCAST_DRIVER=redis
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nobrainer
+DB_USERNAME=<username you made when installing MySQL>
+DB_PASSWORD=<password you made when installing MySQL>
+
+Open the file /app/Sockets/database.js and set the username and password for the MySQL to the same as above.
+```
 
 **Starting Sockets and Redis (Redis needs installing beforehand)**
 ```bash
-$ redis-server --port 3000
+$ redis-server
 ```
 ```bash
-$ node socket.js
+$ node socket
 ```
 
-> **To test emails locally set MAIL_DRIVER to log in your .env file**.
+> **Go to  http://127.0.0.1:8000/pin and enter 9876, then enter your desired username.**
+> **Then to start the quiz go to http://127.0.0.1:8000/quiz/start/9876 (on a seperate browser)**
+
+> Brief Installation video by UP805717: ** https://youtu.be/rxy6xUXWi68 ** [Youtube Link](https://youtu.be/rxy6xUXWi68)
 
 ## Development Team
 

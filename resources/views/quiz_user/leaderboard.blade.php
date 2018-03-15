@@ -38,18 +38,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <!-- This gets the socket.io scripts -->
     <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
     <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
     <script src="js/functions.js"></script>
     <script>
       let scoreboard = [] //This stores all of the
-      socket.emit('getLeaderboards', {});
+      socket.emit('getLeaderboards', {}); //This requests the node server for the leaderboard scores
+
+      //When the server sends the leaderboard/score data
       socket.on('displayLeaderBoards', function(data2) {
         let data = data2['users'].reverse()
-        //console.log(data['users'], data['users'].length)
+
+        //This loops through all of the data and sorts the data into an appropiate object
         for (let i = 0; i < data.length; i++) {
           console.log(data[i])
-          //let percentage = (parseFloat(data['users'][i].questionsCorrect) / (parseFloat(data['users'][i].questionsCorrect) + parseFloat(data['users'][i].questionsIncorrect))) * 100
           let user = {
             id: data[i].id,
             score: parseFloat(data[i].questionsCorrect * 10) - parseFloat(data[i].questionsIncorrect * 5), //10 points per question correct, minus 5 points per question incorrect.
@@ -58,9 +61,9 @@
           scoreboard.push(user)
         }
 
-        //Sorts list of scores by their score. Highest at the top.
+        //This sorts the users by their score. Highest will be at the top.
         scoreboard.sort(function(a, b){return b.score - a.score});
-        //get user position
+        //Get user position
         for (user in scoreboard) {
           if (scoreboard[user].id == getCookie('randomVal')) {
             let place = parseFloat(user) + 1
@@ -68,8 +71,8 @@
           }
         }
 
-        //Display top 3 players (or smaller if there are less players)
-        //Makes the efficiency of the loop better.
+        //This displays the top 3 players (or smaller if there are less players)
+        //This makes the efficiency of the loop better.
         let scoreLoop = 2
         if (scoreLoop < scoreboard.length-1) {
           scoreLoop = scoreboard.length-1
@@ -91,11 +94,9 @@
           }
         }
 
-        console.log("After", scoreboard)
-
       })
 
-      //Functipm to get the suffix's for the scores.
+      //Function to get the suffix's for the scores. Credits go to the Javascript for Dummies book.
       function getSuffix(d) {
           var z = d % 10,
               l = d % 100;
@@ -111,7 +112,5 @@
           return d + "th";
       }
     </script>
-
-    <!--End External Scripts-->
   </body>
 </html>

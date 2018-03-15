@@ -5,7 +5,7 @@
 */
 
 /*
-  MySQL config
+  MySQL config - this may need to be changed, dependent on your MySQL script. View: https://youtu.be/rxy6xUXWi68 for a mini tutorial.
 */
 let mysql = require('mysql');
 var con = mysql.createConnection({
@@ -61,7 +61,7 @@ async function getQuizData(pin) {
 }
 
 /*
-  After getting the data from the database, it formats all of the data into
+  After getting the data from the database, it formats all of the data into a format which is eventually passed back to the sockets file.
 */
 function sortData(data) {
   let allQuizData = []
@@ -70,6 +70,7 @@ function sortData(data) {
   let rightAnswer  = ''
   let questionDetails = resetQuestionDetails(1)
   let numberIndex = 2
+  //Loops through all the data
   for (let i = 0; i < data.length; i++) {
     if (last == "" || last == data[i].question) {
       last = data[i].question
@@ -95,6 +96,7 @@ function sortData(data) {
       allQuizData.push(addRightAnswer(questionDetails, rightAnswer))
       questionDetails = resetQuestionDetails(numberIndex)
       questionDetails.ans1 = data[i].choice
+      //Gets the correct answer for the quiz question
       if (data[i].rightChoice == '1') {
         rightAnswer = data[i].choice
       }
@@ -104,9 +106,10 @@ function sortData(data) {
     }
   }
   allQuizData.push(addRightAnswer(questionDetails, rightAnswer))
-  return allQuizData
+  return allQuizData //returns all of the formatted data
 }
 
+//This method creates a Javascript object with a quiz question and its correct answer.
 function addRightAnswer(list, rightAnwer) {
   return mainData = {
     'ans-correct': rightAnwer,
@@ -114,6 +117,10 @@ function addRightAnswer(list, rightAnwer) {
   }
 }
 
+/*
+  This method resets the questionDetails object so that a new question can be created.
+  This is also here to prevent any errors.
+*/
 function resetQuestionDetails(numberIndex) {
   return questionDetails = {
       'question-no': numberIndex,
@@ -124,18 +131,6 @@ function resetQuestionDetails(numberIndex) {
       'ans3': '',
       'ans4': '',
     }
-}
-
-function getQuiz(quizID) {
-  //Gets all the quizQuestions
-}
-
-function getQuestions(quizID) {
-  //Gets all the quizQuestions
-}
-
-function getAnswers(quizID) {
-  //Gets all the quizQuestions
 }
 
 module.exports.getQuizData = getQuizData

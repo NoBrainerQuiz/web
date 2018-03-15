@@ -102,31 +102,31 @@
         </div>
       </div>
 
-
-      <!-- Please do not remove this -->
+      <!-- This gets the socket.io scripts -->
       <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
       <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
       <script src="js/sockets.js"></script>
       <script src="js/functions.js"></script>
       <script>
         let valid = false;
-        let username;
-        let allUserInfo;
-        let id = getCookie("randomVal");
+        let username; //stores the clients username
+        let allUserInfo; //stores all of the other users information
+        let id = getCookie("randomVal"); //This gets the users cookie value which is used to validate the user on the server side.
+
+        //As soon as the user loads the page, it sends a request to the server to validate the user
         socket.on('connect', function(data) {
           socket.emit('validateUser', {id: id})
-          //socket.emit('addUser', {name: "Benny_boy", id: id})
         })
 
-        //Needs uptading regularly for scores..?
+        //When the server sends the client the user info, it updates 2 global variables
         socket.on('userInfo', function(data) {
           console.log(data)
           username = data.username
           allUserInfo = data.allUsers
         })
 
+        //When the server sends the question results to the user (once the timer has ended), it displays to the user if they got it correct or incorrect.
         socket.on('showResults', function(info) {
-          //Not very secure
           let data = info['users']
           let correct = info['correct']
           for (let i = 0; i < data.length; i++) {
@@ -150,11 +150,13 @@
           console.log("GAME OVER", data)
         })
 
+        //This resets the modal as it is all updated dynamicly.
         function resetAnswerModal() {
           document.querySelector('#answerTitle').innerHTML = "&#x1F60A; Question Answered!"
           document.querySelector('#answerBody').innerHTML = "Your quesiton has been answered. Please wait for the timer to end for the next question."
         }
 
+        //This disables all of the question buttons
         function disableAllButtons() {
           $('#ans1').prop('disabled', true);
           $('#ans2').prop('disabled', true);
@@ -162,6 +164,7 @@
           $('#ans4').prop('disabled', true);
         }
 
+        //This re-enables all of the question buttons
         function enableAllButtons() {
           $('#ans1').prop('disabled', false);
           $('#ans2').prop('disabled', false);
@@ -169,6 +172,7 @@
           $('#ans4').prop('disabled', false);
         }
 
+        //Upon the user clicking the first answer button, it sends it to the server and stops the user answering another question.
         $('#ans1').on('click', function(event) {
           event.preventDefault();
           socket.emit('answer', {
@@ -178,6 +182,7 @@
           answered()
         });
 
+        //Upon the user clicking the second answer button, it sends it to the server and stops the user answering another question.
         $('#ans2').on('click', function(event) {
           event.preventDefault();
           socket.emit('answer', {
@@ -187,6 +192,7 @@
           answered()
         });
 
+        //Upon the user clicking the third answer button, it sends it to the server and stops the user answering another question.
         $('#ans3').on('click', function(event) {
           event.preventDefault();
           socket.emit('answer', {
@@ -196,6 +202,7 @@
           answered()
         });
 
+        //Upon the user clicking the fourth answer button, it sends it to the server and stops the user answering another question.
         $('#ans4').on('click', function(event) {
           event.preventDefault();
           socket.emit('answer', {
@@ -205,21 +212,25 @@
           answered()
         });
 
+        //This forces a modal popup on the user (which they cannot close), so they can't answer another question.
         function answered() {
           $('#answerUpModal').modal({backdrop: 'static', keyboard: false})
           $('#answerUpModal').modal('show');
           disableAllButtons()
         }
 
+        //TRhis removes the answer modal and is called when the client has another question displayed to them
         function removeModal() {
           $('#answerUpModal').modal('hide');
         }
 
       </script>
+      <!-- Thisis the standard bootstrap, jquery and popper javascript files -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <script>
+         //This is a bootstrap function to make the tooltip work
          $(function () {
             $('[data-toggle="tooltip"]').tooltip()
           })
