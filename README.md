@@ -88,10 +88,11 @@ $ redis-server
 $ node socket
 ```
 
-> **Go to  http://127.0.0.1:8000/pin and enter 9876, then enter your desired username.**
-> **Then to start the quiz go to http://127.0.0.1:8000/quiz/start/9876 (on a seperate browser)**
+> Go to  http://127.0.0.1:8000/pin and enter 9876, then enter your desired username.
 
-> Brief Installation video by UP805717: ** https://youtu.be/rxy6xUXWi68 ** [Youtube Link](https://youtu.be/rxy6xUXWi68)
+> Then to start the quiz go to http://127.0.0.1:8000/quiz/start/9876 (on a seperate browser)
+
+> **Brief Installation video by UP805717: ** https://youtu.be/rxy6xUXWi68  ([Youtube Link](https://youtu.be/rxy6xUXWi68))
 
 ## Development Team
 
