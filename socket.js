@@ -1,13 +1,25 @@
 /*
 
   Author: UP805717 (springjben)
+  Current Version: 3.2.1 (<major>.<minor>.<maintenance>)
 
   Documentation:
-    Start a quiz: http://127.0.0.1:8000/quiz/start/{PIN}
-    Finish a quiz: http://127.0.0.1:8000/quiz/finish/{PIN}
+    To start a quiz: http://127.0.0.1:8000/quiz/start/{PIN} (use pin 9876 for demonstration purposes)
+    To finish a quiz: http://127.0.0.1:8000/quiz/finish/{PIN} (use pin 9876 for demonstration purposes)
 
   Version Control:
-    ....
+    3.2.1 - (Commit on March 15th) Maintenace, added documentation and cleaned up the code.
+    3.2.0 - More minor code added to allow the users to answer questions properly and without cheating.
+    3.1.0 - Minor bugs fixed, timer slider property, scoreboard scores work
+    3.0.0 - (Commit on March 3rd) Another major update, fixed a big timing issue, multiple users can play the quiz at the same time.
+    2.0.0 - (Commit on March 2nd) Major updates, the server shows all the questions to the user and redirects them at the end of the quiz. Quiz "states" implemented.
+    1.1.0 - (Commit on Feb 15th) Minor updates, database and node server can pass data to each other, the questions are passed to the client.
+    1.0.0 - (Commit on Feb 12th) Major update, server and client can speak to each other dynamically, database queries successfully get the correct quiz data
+    0.1.2 - (Commit on Feb 8th) Bugs fixed, such as PHP events firing off.
+    0.1.2 - Minor update, built the structure of the document (got sockets working) and got node communicating witht the MySQL database. (app/Socket/database.js)
+    0.0.1 - All files added, all packages installed (Redis, Socket.io and Express) and updated.
+
+    This version control part has only been added on the last commit as it was originally on a google document (but I moved it here so you can see it easier).
 
 */
 
@@ -39,7 +51,7 @@ let users = []
 let quizData = {}
 let index = 0
 
-const secondsPerQuestion = 15 //How many seconds to show per quiz
+const secondsPerQuestion = 7 //How many seconds to show per quiz (Change back to 15 seconds!)
 const serverOffset = 6 //This means after the quiz has ended
 
 //Relative arrays containing objects from the database

@@ -88,26 +88,77 @@ def answerQuestion(buttonText):
     else:
         print("Test failed, it should have answered a question")
 
+def isAnswerCorrect(correctAnswer):
+    if correctAnswer == True:
+        if Button('testBtn').is_enabled() == True:
+            print("Test success, the answer picked was correct")
+        else:
+            print("Test failed, the answer should display as correct")
+    else:
+        if Button('testBtn').is_enabled() == False:
+            print("Test success, the answer picked was incorrect")
+        else:
+            print("Test failed, the answer should display as incorrect")
+
+def isTimeUp():
+    if Text("The timer has been complete!").exists():
+        print("Test successful, no answer was picked and timer ran out message was shown")
+    else:
+        print("Test failed, timer ran out message was not shown")
+
+def isScoreCorrect():
+    if Text("5").exists():
+        print("Test successful, The score was shown correctly")
+    else:
+        print("Test failed, score was not shown correctly")
+
+def correctPlace():
+    if Text("1st - UP805717").exists():
+        print("Test successful, Correct postion shown")
+    else:
+        print("Test failed, incorrect postion shown")
+
+def isHomePage():
+    click(S("#homeImage"))
+    if Button("TAKE QUIZ").exists() == True:
+        print("Test sucessful, User has been redirected to home page")
+    else:
+        print("Test failed, User hasn't been redirected to home page")
+
 def main():
     browserDriver = openPinPage()
-    tryPinNotExist() #1
+    tryPinNotExist() #1 - Tries no pin.
     delay(1)
-    tryNoPin() #2
+    tryNoPin() #2 - Checks an incorrect pin returns an error
     delay(1)
-    tryPinExist() #3
+    tryPinExist() #3 - Checks a PIN exists
     delay(2)
-    checkUsernameVoid() #4
+    checkUsernameVoid() #4 - Checks the the username cannot be blank
     delay(2)
-    checkUsernameSubmits() #5
+    checkUsernameSubmits() #5 - Checks the user can input a username
     delay(1)
-    hostQuizStart() #6 - Starts the quiz
+    hostQuizStart() #6 - Checks the quiz starts
     set_driver(browserDriver)
     delay(1)
-    hasUserBeenRedirect("Will Claudia gives us a good mark?") #7
+    hasUserBeenRedirect("Will Claudia gives us a good mark?") #7 Checking the user has been redirected
     delay(1)
-    answerQuestion("Hopefully") #8
-    delay(1)
+    answerQuestion("Hopefully") #8 - Checking the user can answer a question
+    delay(3)
+    isAnswerCorrect(True) #9 - checking answer is correct
+    delay(7)
+    hasUserBeenRedirect("When was Github created?") #see if new question has shown
+    click(Button("2012"))
+    delay(6)
+    isAnswerCorrect(False) #10 - checking answer is incorrect
+    delay(13)
+    isTimeUp()#11 - has the user entered something and has the correct message appeared
+    delay(4)
+    hasUserBeenRedirect("LEADERBOARD")#12 - has users been redirected to leaderboard page
+    isScoreCorrect()#13 - checks if user score is correct
+    correctPlace()#14 - check if user postion is correct
+    delay(3)
+    isHomePage()#15 - check that user has been redirected to home page
     
-    #kill_browser()
+    
 
 main()

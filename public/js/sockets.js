@@ -31,6 +31,7 @@ socket.on('resetQuestion', function() {
   removeModal()
   enableAllButtons()
   resetAnswerModal()
+  $('#answersTestButton').prop('disabled', false); //if its false its correct. If its disabled its incorrect.
 })
 
 //When a user submits their username, it makes sure the username is not blank. If its a valid username, the client and server will both validate each other.

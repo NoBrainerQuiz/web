@@ -15,7 +15,7 @@
   <body>
     <div class="container" id="top-container">
       <h1 class="display-4 text-center mb-5"></br>
-        <img style="max-width:20%; max-height:20%;" src="{{ asset('img/noBrainerWhite.png') }}" id="noBrainer" alt="logo" />
+        <a id="homeImage" href="/"><img style="max-width:20%; max-height:20%;" src="{{ asset('img/noBrainerWhite.png') }}" id="noBrainer" alt="logo" /></a>
       </h1>
     </div>
     <div class="container container-fluid text-center" id="main-page-container">

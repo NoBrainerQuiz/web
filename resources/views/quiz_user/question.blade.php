@@ -24,9 +24,8 @@
       </div>
       <div id="ans-container">
         <button class="ans-box" id="ans1">
-          <h1>Loading answer 1...</h1>
           <div class="center-container">
-            sdf
+            Loading answer 1...
           </div>
         </button>
         <button class="ans-box" id="ans2">
@@ -46,7 +45,6 @@
         </button>
       </div>
       <p id="version-number">Version 0.0.0.1Beta0.1</p>
-
       <!-- Model for username -->
       <div class="modal fade" id="assignName">
         <div class="modal-dialog" role="document">
@@ -62,7 +60,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary"id="submit-username">Submit Username</button>
+              <button type="button" class="btn btn-primary" id="submit-username">Submit Username</button>
             </div>
           </div>
         </div>
@@ -102,6 +100,8 @@
         </div>
       </div>
 
+      <button id="answersTestButton">testBtn</button>
+
       <!-- This gets the socket.io scripts -->
       <script src="//{{ Request::getHost() }}:3000/socket.io/socket.io.js"></script>
       <script>var socket = io('//{{ Request::getHost() }}:3000');</script>
@@ -138,6 +138,7 @@
               } else {
                 document.querySelector('#answerTitle').innerHTML = "&#x1F622; Incorrect"
                 text = "You got the question incorrect! Better luck next time. Correct answer was " + correct
+                $('#answersTestButton').prop('disabled', true);
               }
               text += "</br></br> You currently have <b>" + data[i].questionsCorrect + "</b> questions correct."
 
