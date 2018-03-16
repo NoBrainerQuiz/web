@@ -1,18 +1,9 @@
 from helium.api import *
 import time
 
-#Please make sure you have Google Chrome installed to do these tests.
-#After every test please restart the node socket server! This is very important
-
-"""start_chrome("google.com/?hl=en")
-write("Helium")
-press(ENTER)
-click("Helium - Wikipedia")
-if 'Wikipedia' in get_driver().title:
-	print('Test passed!')
-else:
-	print('Test failed :(')
-kill_browser()"""
+#We have added in time delays as our game quiz works based on time. Furthermore, time delays makes it easier to see the test process
+#To run the tests, start up the web server and socket server.
+   
 
 def openPinPage():
     browserDriver = start_chrome("http://127.0.0.1:8000")
@@ -47,8 +38,6 @@ def tryPinExist():
 def delay(seconds):
     time.sleep(seconds)
 
-#Validation test
-
 #Test that you can't have a blank username
 def checkUsernameVoid():
     click(Button('Submit Username'))
@@ -66,6 +55,12 @@ def checkUsernameSubmits():
         print("Test is successful as it contains text")
     else:
         print("Test has failed, button should disable after submit")
+
+def checkUsernameModal():
+    if Button('Submit Username').exists():
+        print("Test is successful, new web session asks for username validation upon question page")
+    else:
+        print("Test has failed, should have to validate the user upon a new web session")    
 
 def hostQuizStart():
     start_chrome("http://127.0.0.1:8000/quiz/start/9876")
@@ -121,44 +116,105 @@ def correctPlace():
 def isHomePage():
     click(S("#homeImage"))
     if Button("TAKE QUIZ").exists() == True:
-        print("Test sucessful, User has been redirected to home page")
+        print("Test sucessful, user has been redirected to home page")
     else:
-        print("Test failed, User hasn't been redirected to home page")
+        print("Test failed, user hasn't been redirected to home page")
+
+def answerAnotherQuestion():
+    if Button("2008").is_enabled() == False:
+        print("Test success, they cannot change their answer")
+    else:
+        print("Test failed, the user should not be able to change their answer")
+
+def sameQuestionAfterRefresh(testText):
+    refresh()
+    if Text(testText).exists():
+        print("Test is successful, after page refreshing it still shows the same question")
+    else:
+        print("Test has failed, the user should be able to refresh the page and still view the questions")  
+
+def backToHomePage():
+    click(Button("CREATE QUIZ"))
+    click(S("#homeImage"))
+    if Button("TAKE QUIZ").exists() == True:
+        print("Test sucessful, user has been redirected to home page from the login screen")
+    else:
+        print("Test failed, user hasn't been redirected to home page from the login screen")
+
+def checkGameReset():
+    if Text("Loading answer 1...").exists():
+        print("Test is successful, the questions have been reset on the server and client")
+    else:
+        print("Test has failed, the questions should have reset after a whole game was played.") 
 
 def main():
+    #Tests to check the functionality of playing the quiz
     browserDriver = openPinPage()
     tryPinNotExist() #1 - Tries no pin.
     delay(1)
+    
     tryNoPin() #2 - Checks an incorrect pin returns an error
     delay(1)
+    
     tryPinExist() #3 - Checks a PIN exists
     delay(2)
+    
     checkUsernameVoid() #4 - Checks the the username cannot be blank
     delay(2)
+    
     checkUsernameSubmits() #5 - Checks the user can input a username
     delay(1)
+    
     hostQuizStart() #6 - Checks the quiz starts
-    set_driver(browserDriver)
+    set_driver(browserDriver) #This has to re allocated the driver to the old browser
     delay(1)
+    
     hasUserBeenRedirect("Will Claudia gives us a good mark?") #7 Checking the user has been redirected
     delay(1)
+    
     answerQuestion("Hopefully") #8 - Checking the user can answer a question
     delay(3)
+    
     isAnswerCorrect(True) #9 - checking answer is correct
     delay(7)
-    hasUserBeenRedirect("When was Github created?") #see if new question has shown
-    click(Button("2012"))
-    delay(6)
-    isAnswerCorrect(False) #10 - checking answer is incorrect
-    delay(13)
-    isTimeUp()#11 - has the user entered something and has the correct message appeared
-    delay(4)
-    hasUserBeenRedirect("LEADERBOARD")#12 - has users been redirected to leaderboard page
-    isScoreCorrect()#13 - checks if user score is correct
-    correctPlace()#14 - check if user postion is correct
+    
+    sameQuestionAfterRefresh("When was Github created?") #10 - What happens when the user refreshses the page, does it show the same question
+    delay(2)
+    
+    hasUserBeenRedirect("When was Github created?") #11 -see if new question has shown
+    
+    click(Button("2012")) #Clicks the button to answer the question
     delay(3)
-    isHomePage()#15 - check that user has been redirected to home page
     
+    answerAnotherQuestion() #12 - Can a user click a question when they have already clicked a question
+    delay(2)
     
+    isAnswerCorrect(False) #13 - checking answer is incorrect
+    delay(11)
+    
+    isTimeUp() #14 - has the user entered something and has the correct message appeared
+    delay(6)
+    
+    hasUserBeenRedirect("LEADERBOARD") #12 - has users been redirected to leaderboard page
+    
+    isScoreCorrect() #15 - checks if user score is correct
+    
+    correctPlace() #16 - check if user postion is correct
+    delay(3)
+    
+    isHomePage() #17 - check that user has been redirected to home page
+
+    #click(Button("TAKE QUIZ"))
+    backToHomePage() #18 - check you can go back to the homepage in the login page.
+    delay(2)
+
+    go_to("http://127.0.0.1:8000/question")
+    
+    #Tests after a quiz has been played fully
+
+    delay(1)
+    checkUsernameModal() #19 - If a user goes straight to the question page before entering a username, does it make them validate themselves
+    delay(1)
+    checkGameReset() #20 - after playing a game do all of the questions reset
 
 main()

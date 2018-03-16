@@ -11,7 +11,7 @@
 
         <form action="{{ route('login') }}" method="post" class="form-signin" style="max-height: 100% !important;">
         {{ csrf_field() }}
-        <a href="{{ route('welcome') }}">
+        <a id="homeImage" href="{{ route('welcome') }}">
           <h1 class="display-4 text-center mb-5">
           <img style="max-width:50%; max-height:50%;" src="{{ asset('img/noBrainerWhite.png') }}" id="noBrainer" alt="logo" />
           </h1>
