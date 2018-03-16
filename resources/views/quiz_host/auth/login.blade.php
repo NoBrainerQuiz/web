@@ -18,7 +18,7 @@
         </a>
 
           @if ($errors->all())
-<div class="alert alert-danger alert-dismissible fade show" role="alert" style="">
+<div class="alert alert-danger alert-dismissible fade show" id="loginError" role="alert" style="">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -39,7 +39,7 @@
 
           <div class="form-group">
             <div class="label-floating">
-              <input id="username" type="text" name="email" class="form-control" placeholder="Username/Email" maxlength="50" autofocus>
+              <input id="username" type="text" name="email" class="form-control" placeholder="Username/Email" maxlength="50">
               <label for="username">Username/Email</label>
             </div>
           </div>
@@ -60,7 +60,7 @@
             <hr>
             <p class="mt-4">
               <label class="text-muted">Don't have an account?</label>
-              <a href="{{ route('register') }}">Sign up</a>
+              <a id="signUp" href="{{ route('register') }}">Sign up</a>
             </p>
         </div>
         </form>

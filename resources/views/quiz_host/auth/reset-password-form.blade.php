@@ -18,7 +18,7 @@
 </a>
 
 @if (session('status'))
-<div class="alert alert-success alert-dismissible fade show" role="alert" style="">
+<div id="successfulLinkSent" class="alert alert-success alert-dismissible fade show" role="alert" style="">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -27,7 +27,7 @@
   @endif
 
            @if ($errors->all())
-<div class="alert alert-danger alert-dismissible fade show" role="alert" style="">
+<div id="resetPasswordError" class="alert alert-danger alert-dismissible fade show" role="alert" style="">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

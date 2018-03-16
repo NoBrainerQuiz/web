@@ -13,7 +13,7 @@
           </h1>
 </a>
                   @if ($errors->all())
-<div class="alert alert-danger alert-dismissible fade show" role="alert" style="">
+<div id="registerError" class="alert alert-danger alert-dismissible fade show" role="alert" style="">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -26,7 +26,7 @@
             <div class="col">
           <div class="form-group">
             <div class="label-floating">
-              <input id="username" type="text" name="username" class="form-control" placeholder="E-mail" maxlength="50" autofocus>
+              <input id="username" type="text" name="username" class="form-control" placeholder="Username" maxlength="50" autofocus>
               <label for="username">Username</label>
             </div>
           </div>
@@ -34,7 +34,7 @@
         <div class="col">
           <div class="form-group">
             <div class="label-floating">
-              <input id="email" type="email" name="email" class="form-control" placeholder="Password" maxlength="20">
+              <input id="email" type="email" name="email" class="form-control" placeholder="Email">
               <label for="email">Email</label>
             </div>
           </div>
@@ -49,7 +49,7 @@
 
           <div class="form-group">
             <div class="label-floating">
-              <input id="password_confirm" type="password" name="password_confirmation" class="form-control" placeholder="Password" maxlength="20">
+              <input id="password_confirm" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" maxlength="20">
               <label for="password_confirm">Confirm Password</label>
             </div>
           </div>
