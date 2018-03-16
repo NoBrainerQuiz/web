@@ -21,12 +21,20 @@ It's goal is to be:
 * **Powerful**, Everything is in real-time, host unlimited quizzes for unlimited users.
 * **Responsive**, a mobile focused UI optimised for touch devices, with an included dedicated mobile app!
 
-
-## Installation
-
+## System Requirements
 > **NoBrainer is currently in development, so please expect bugs and potential unexpected behaviour**.
 
-NoBrainer requires **PHP >= 7.1.3** and you will also need to install [Composer](https://getcomposer.org) & [NPM](https://www.npmjs.com).
+ - PHP >= 7.1.3
+ - NodeJS >= 8.10.0
+ - Redis >= 3.0.5
+ - MySQL >= 5.5
+ - Composer
+ - NPM
+ - Currently tested on Apache & NGINX
+
+Once you have successfully installed all of NoBrainer's dependencies you can move on to the installation steps.
+
+## Installation
 
 **Clone the repository to your local machine**
 ```bash
@@ -52,6 +60,7 @@ $ php artisan migrate
 ```bash
 $ php artisan db:seed
 ```
+**If using the laravel server run**
 ```bash
 $ php artisan serve
 ```
